@@ -58,16 +58,40 @@
 		896B952529714DA90070BBE5 /* The News Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				896B9541297163D40070BBE5 /* Model */,
+				896B953F297163B80070BBE5 /* ViewModel */,
+				896B953D297163A60070BBE5 /* View */,
 				896B952629714DA90070BBE5 /* AppDelegate.swift */,
 				896B952829714DA90070BBE5 /* SceneDelegate.swift */,
 				896B952A29714DA90070BBE5 /* ViewController.swift */,
-				896B952C29714DA90070BBE5 /* Main.storyboard */,
 				896B953229714DAA0070BBE5 /* Assets.xcassets */,
 				896B953429714DAA0070BBE5 /* LaunchScreen.storyboard */,
 				896B953729714DAA0070BBE5 /* Info.plist */,
 				896B952F29714DA90070BBE5 /* The_News_Explorer.xcdatamodeld */,
 			);
 			path = "The News Explorer";
+			sourceTree = "<group>";
+		};
+		896B953D297163A60070BBE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				896B952C29714DA90070BBE5 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		896B953F297163B80070BBE5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		896B9541297163D40070BBE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
