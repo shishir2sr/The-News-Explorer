@@ -52,6 +52,7 @@
 		38A4A7E829724E6300F504DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				38A4A7EF2972AB1200F504DD /* CategoryModel.swift */,
 				38A4A7E629724CCF00F504DD /* NewsModel.swift */,
 			);
 			path = Model;
@@ -112,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				896B952C29714DA90070BBE5 /* Main.storyboard */,
-				38A4A7EF2972AB1200F504DD /* CategoryModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
