@@ -12,14 +12,19 @@ class NetworkManager: NSObject {
     
     static let shared = NetworkManager()
     
-    let newsUrl =  "https://newsapi.org/v2/top-headlines?country=us&apiKey=d5f4c3ef5deb4b68a286c9e0092bc3ce"
+    let newsUrl =  "https://newsapi.org/v2/top-headlines?apiKey=d5f4c3ef5deb4b68a286c9e0092bc3ce&category=$query"
     
     
-    func getNews(completed: @escaping (Result<[Article], CustomError>) -> Void) {
+    func getNews(for category: String, completed: @escaping (Result<[Article], CustomError>) -> Void) {
+        
+        let urlString = newsUrl
+            .replacingOccurrences(of: "$query", with: category)
+            .replacingOccurrences(of: " ", with: "%20")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         
         
         guard
-            let url = URL(string: newsUrl)
+            let url = URL(string: urlString)
         else {
             completed(.failure(.invalidURL))
             return
