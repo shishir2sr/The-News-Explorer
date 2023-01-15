@@ -10,24 +10,45 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logo = UIImage(named: "logo")
-                let imageView = UIImageView(image:logo)
-                self.navigationItem.titleView = imageView
+        let logoImageView = UIImageView(image: UIImage(named: "logo"))
+        logoImageView.contentMode = .scaleAspectFit
 
-                let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-                self.navigationItem.rightBarButtonItem = searchButton
+        // Create a UIBarButtonItem using the image view
+        let logoButton = UIBarButtonItem(customView: logoImageView)
+
+        // Set the leftBarButtonItem of your navigation item
+        self.navigationItem.titleView = logoImageView
+        
+        // Create a text field
+//        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
+//        textField.placeholder = "Search"
+//        textField.textAlignment = .right
+//        textField.borderStyle = .roundedRect
+//
+//        // Set the text field as the titleView of the navigation item
+//        self.navigationItem.titleView = textField
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+
+
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        self.navigationItem.rightBarButtonItem = searchButton
         
         tableView.delegate = self
         tableView.dataSource = self
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        
         // coreDataInit()
     }
     
     @objc func searchButtonTapped(){
-            print("search button tapped")
-        }
+        print("search button tapped")
+    }
 }
 
 

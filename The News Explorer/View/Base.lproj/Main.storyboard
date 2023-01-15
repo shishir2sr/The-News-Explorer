@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d6J-bx-akL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHa-pM-VEk">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--The News Explorer-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="The_News_Explorer" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fOo-cw-eq5">
-                                <rect key="frame" x="20" y="103" width="393" height="89.333333333333314"/>
+                                <rect key="frame" x="5" y="103" width="393" height="89.333333333333314"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGu-Lo-0NQ">
                                     <size key="itemSize" width="137" height="123"/>
@@ -103,8 +103,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GNM-SW-504" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DhC-7z-pRE"/>
-                            <constraint firstItem="fOo-cw-eq5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="20" id="RAm-Jw-NwG"/>
-                            <constraint firstItem="fOo-cw-eq5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="S7n-yn-DvT"/>
+                            <constraint firstItem="fOo-cw-eq5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="5" id="RAm-Jw-NwG"/>
+                            <constraint firstItem="fOo-cw-eq5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="S7n-yn-DvT"/>
                             <constraint firstItem="GNM-SW-504" firstAttribute="top" secondItem="fOo-cw-eq5" secondAttribute="bottom" id="Vkc-x9-oc4"/>
                             <constraint firstItem="GNM-SW-504" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bZk-Gf-k8c"/>
                             <constraint firstItem="fOo-cw-eq5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.105" id="ifZ-Th-FoS"/>
@@ -112,11 +112,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GNM-SW-504" secondAttribute="bottom" id="vf7-ft-QBW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="nve-bj-88i">
-                        <imageReference key="image" image="house" catalog="system" symbolScale="large" variableValue="0.0"/>
-                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" title="The News Explorer" largeTitleDisplayMode="always" style="browser" id="S5J-hp-m4I">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" style="editor" id="S5J-hp-m4I">
                         <barButtonItem key="rightBarButtonItem" title="Search" image="magnifyingglass" catalog="system" id="0Tb-Kp-eHB">
                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
@@ -128,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1979.3893129770991" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="2906.1068702290077" y="-34.507042253521128"/>
         </scene>
         <!--Bookmark-->
         <scene sceneID="MbG-4y-now">
@@ -148,28 +144,6 @@
             </objects>
             <point key="canvasLocation" x="1404" y="701"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NpQ-91-Nxa">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d6J-bx-akL" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="REG-AP-vJm">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBarAppearance key="scrollEdgeAppearance">
-                            <color key="backgroundColor" red="0.3785389079" green="0.4867502836" blue="0.63910049199999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </navigationBarAppearance>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oHa-pM-VEk" kind="relationship" relationship="rootViewController" id="PCj-vv-oQ4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g9o-2s-a1L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zsJ-dF-UKF">
             <objects>
@@ -177,17 +151,40 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="K5Q-fM-BWx"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WGy-ar-vVp">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="HJG-tK-JA9"/>
+                        <segue destination="5HK-62-qNb" kind="relationship" relationship="viewControllers" id="HJG-tK-JA9"/>
                         <segue destination="5Y9-1N-loD" kind="relationship" relationship="viewControllers" id="3eM-ed-azU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGB-GN-xAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="-34.507042253521128"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="yy8-Gc-fLN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5HK-62-qNb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="nve-bj-88i">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="large" variableValue="0.0"/>
+                        <imageReference key="selectedImage" image="house" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHF-Rm-VC0">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wI0-xQ-oOf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04O-f2-wQQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1979.3893129770991" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>
