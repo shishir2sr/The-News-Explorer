@@ -9,7 +9,17 @@ import Foundation
 
 enum CustomError: Error {
     case invalidURL
+    case invalidData
     case unableToComplete
     case invalidResponse
-    case invalidData
+    
+    
+    var localizedDescription: String {
+        switch self {
+        case .invalidURL: return "Invalid URL"
+        case .invalidData: return "Invalid Data"
+        case .unableToComplete: return "Unable to complete your request"
+        case .invalidResponse: return "Invalid Response"
+        }
+    }
 }
