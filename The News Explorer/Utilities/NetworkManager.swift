@@ -7,6 +7,7 @@
 
 import Foundation
 class NetworkManager: NSObject {
+    
     private override init() {}
     static let shared = NetworkManager()
     let newsUrl =  "https://newsapi.org/v2/top-headlines?apiKey=d5f4c3ef5deb4b68a286c9e0092bc3ce&category=$query"
@@ -54,9 +55,11 @@ class NetworkManager: NSObject {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 decoder.dateDecodingStrategy = .iso8601
                 let decodedResponse = try decoder.decode(NewsModel.self, from: data)
-                completed(.success(decodedResponse.articles))
                 
-                
+                DispatchQueue.main.async {
+                    completed(.success(decodedResponse.articles))
+                }
+  
             } catch {
                 completed(.failure(.invalidData))
             }
@@ -64,10 +67,10 @@ class NetworkManager: NSObject {
         
         task.resume()
     }
-
+    
 }
 
 
 
-    
-    
+
+
