@@ -7,15 +7,29 @@
 
 import Foundation
 struct Constants{
-    static let categoryList: [CategoryModel] = [
+    static let categoryList = ["Business", "Entertainment", "General", "Health", "Science", "Sports","Technology"]
+    
+    static let categoryModelList: [CategoryModel] = [
+        CategoryModel(categoryName: "All", categoryIcon: "globe.asia.australia.fill"),
         CategoryModel(categoryName: "Business", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "Entertainment", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "General", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "Health", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "Science", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "Sports", categoryIcon: "briefcase"),
-        CategoryModel(categoryName: "Technology", categoryIcon: "briefcase")
+        CategoryModel(categoryName: "Entertainment", categoryIcon: "film"),
+        CategoryModel(categoryName: "General", categoryIcon: "newspaper"),
+        CategoryModel(categoryName: "Health", categoryIcon: "heart"),
+        CategoryModel(categoryName: "Science", categoryIcon: "book.closed"),
+        CategoryModel(categoryName: "Sports", categoryIcon: "figure.basketball"),
+        CategoryModel(categoryName: "Technology", categoryIcon: "antenna.radiowaves.left.and.right")
+        
+        /**
+         Health: "heart" or "person.crop.circle"
+         Science: "flask" or "book.closed"
+         Sports: "basketball" or "person.running"
+         Technology: "computer" or "antenna.radiowaves.left.and.right"
+
+         */
     ]
+    
+    static let categoryCVCell = "cvcell"
+    static let homeTableViewCell = "cell"
 }
 /**
  Business: "briefcase"

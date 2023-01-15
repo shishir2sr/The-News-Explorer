@@ -17,6 +17,8 @@
 		38D210FB2973ACD5004D768A /* CDArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D210F72973ACD4004D768A /* CDArticle+CoreDataClass.swift */; };
 		38D210FC2973ACD5004D768A /* CDArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D210F82973ACD4004D768A /* CDArticle+CoreDataProperties.swift */; };
 		38D211002973B6A4004D768A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D210FF2973B6A4004D768A /* CoreDataStack.swift */; };
+		38D2110229744053004D768A /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2110129744053004D768A /* BookmarkViewController.swift */; };
+		38D2110629745038004D768A /* CategoryCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2110529745038004D768A /* CategoryCollectionVC.swift */; };
 		896B952729714DA90070BBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896B952629714DA90070BBE5 /* AppDelegate.swift */; };
 		896B952929714DA90070BBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896B952829714DA90070BBE5 /* SceneDelegate.swift */; };
 		896B952B29714DA90070BBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896B952A29714DA90070BBE5 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 		38D210F72973ACD4004D768A /* CDArticle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDArticle+CoreDataClass.swift"; sourceTree = "<group>"; };
 		38D210F82973ACD4004D768A /* CDArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDArticle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		38D210FF2973B6A4004D768A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		38D2110129744053004D768A /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		38D2110529745038004D768A /* CategoryCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionVC.swift; sourceTree = "<group>"; };
 		896B952329714DA90070BBE5 /* The News Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The News Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		896B952629714DA90070BBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		896B952829714DA90070BBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,9 @@
 		38A4A7EB29724F5600F504DD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				896B952A29714DA90070BBE5 /* ViewController.swift */,
+				38D2110129744053004D768A /* BookmarkViewController.swift */,
+				38D2110529745038004D768A /* CategoryCollectionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -122,7 +129,6 @@
 				896B953D297163A60070BBE5 /* View */,
 				38A4A7E829724E6300F504DD /* Model */,
 				896B952829714DA90070BBE5 /* SceneDelegate.swift */,
-				896B952A29714DA90070BBE5 /* ViewController.swift */,
 				896B952629714DA90070BBE5 /* AppDelegate.swift */,
 				896B953229714DAA0070BBE5 /* Assets.xcassets */,
 				896B953429714DAA0070BBE5 /* LaunchScreen.storyboard */,
@@ -215,9 +221,11 @@
 				38A4A7EA29724F4A00F504DD /* NetworkManager.swift in Sources */,
 				38D210F92973ACD4004D768A /* CDCategory+CoreDataClass.swift in Sources */,
 				896B952B29714DA90070BBE5 /* ViewController.swift in Sources */,
+				38D2110229744053004D768A /* BookmarkViewController.swift in Sources */,
 				896B952729714DA90070BBE5 /* AppDelegate.swift in Sources */,
 				896B952929714DA90070BBE5 /* SceneDelegate.swift in Sources */,
 				38A4A7F02972AB1200F504DD /* CategoryModel.swift in Sources */,
+				38D2110629745038004D768A /* CategoryCollectionVC.swift in Sources */,
 				38D211002973B6A4004D768A /* CoreDataStack.swift in Sources */,
 				38D210FA2973ACD5004D768A /* CDCategory+CoreDataProperties.swift in Sources */,
 				896B953129714DA90070BBE5 /* The_News_Explorer.xcdatamodeld in Sources */,

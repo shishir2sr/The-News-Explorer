@@ -5,35 +5,57 @@ import CoreData
 class ViewController: UIViewController {
     var  articles: [Article] = []
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title  = "The News Explorer"
+        let logo = UIImage(named: "logo")
+                let imageView = UIImageView(image:logo)
+                self.navigationItem.titleView = imageView
+
+                let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+                self.navigationItem.rightBarButtonItem = searchButton
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        // coreDataInit()
+    }
+    
+    @objc func searchButtonTapped(){
+            print("search button tapped")
+        }
+}
 
-        DispatchQueue.global(qos: .background).async {
-            addCategories()
-            for ct in Constants.categoryList{
-                DispatchQueue.global().sync {
-                    
-                    NetworkManager.shared.getNews(for: ct.categoryName) { result in
-                        switch result {
-                        case .success(let articles):
-                            createArticleEntityFrom(articles: articles, categoryName: ct.categoryName)
-                            
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
-                        
-                    }
-                }
+
+
+
+// MARK: CoreData Init()
+fileprivate func coreDataInit() {
+    DispatchQueue.global(qos: .background).async {
+        addCategories()
+        for ct in Constants.categoryList{
+            DispatchQueue.global().sync {
                 
+                NetworkManager.shared.getNews(for: ct) { result in
+                    switch result {
+                    case .success(let articles):
+                        createArticleEntityFrom(articles: articles, categoryName: ct)
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    
+                }
             }
+            
         }
     }
 }
+
 
 //MARK: Create Categories
 func addCategories() {
@@ -41,10 +63,10 @@ func addCategories() {
     for ct in Constants.categoryList{
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
         let category = CDCategory(context: context)
-        category.categoryName = ct.categoryName
+        category.categoryName = ct
         do {
             try context.save()
-            print("\(ct.categoryName) created")
+            print("\(ct) created")
         } catch {
             print(error)
         }
@@ -94,4 +116,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+}
+
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Constants.categoryModelList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let category = Constants.categoryModelList[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
+        cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
+        cell.categoryLabel.text = category.categoryName
+        
+        return cell
+    }
 }
