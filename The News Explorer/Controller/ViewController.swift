@@ -7,13 +7,13 @@ class ViewController: UIViewController {
     var isLoading = false
     
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
         
-            let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-            frc.delegate = self
-            return frc
-        }()
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        return frc
+    }()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,6 +22,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        print(hasLaunchedBefore)
+            if !hasLaunchedBefore {
+                addCategories()
+                UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            }
+        
+        
+        
         coreDataInit(){
             try? self.fetchedhResultController.performFetch()
             self.isLoading = false
@@ -38,13 +48,15 @@ class ViewController: UIViewController {
     }
     
     // MARK: CoreData Init()
-     func coreDataInit(completion: @escaping  ()->Void) {
-         isLoading = true
+    func coreDataInit(completion: @escaping  ()->Void) {
+        isLoading = true
         
         DispatchQueue.global(qos: .background).async {
-            addCategories()
+            
+            //
+            
             for ct in Constants.categoryList{
-                DispatchQueue.global().sync {
+                DispatchQueue.global().async {
                     
                     NetworkManager.shared.getNews(for: ct) { result in
                         switch result {
@@ -80,6 +92,7 @@ func addCategories() {
             print("\(ct) created")
         } catch {
             print(error)
+            print("Category already exist")
         }
     }
 }
@@ -121,14 +134,13 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 //MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if !isLoading{
             if let count = fetchedhResultController.sections?.first?.numberOfObjects {
-                        return count
-                    }
+                return count
+            }
         }
         return 0
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,12 +154,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         }
         return cell
-        
-        
     }
-    
-    
-    
 }
 
 
