@@ -4,83 +4,73 @@ import CoreData
 
 class ViewController: UIViewController {
     var  articles: [Article] = []
+    var isLoading = false
+    
+    lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+        
+            let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            frc.delegate = self
+            return frc
+        }()
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logoImageView = UIImageView(image: UIImage(named: "logo"))
-        logoImageView.contentMode = .scaleAspectFit
-
-        // Create a UIBarButtonItem using the image view
-        let logoButton = UIBarButtonItem(customView: logoImageView)
-
-        // Set the leftBarButtonItem of your navigation item
-        self.navigationItem.titleView = logoImageView
-        
-        // Create a text field
-//        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
-//        textField.placeholder = "Search"
-//        textField.textAlignment = .right
-//        textField.borderStyle = .roundedRect
-//
-//        // Set the text field as the titleView of the navigation item
-//        self.navigationItem.titleView = textField
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-
-
-        
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        self.navigationItem.rightBarButtonItem = searchButton
+        coreDataInit(){
+            try? self.fetchedhResultController.performFetch()
+            self.isLoading = false
+            self.tableView.reloadData()
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.dataSource = self
         
         
-        // coreDataInit()
+        
     }
     
-    @objc func searchButtonTapped(){
-        print("search button tapped")
-    }
-}
-
-
-
-
-// MARK: CoreData Init()
-fileprivate func coreDataInit() {
-    DispatchQueue.global(qos: .background).async {
-        addCategories()
-        for ct in Constants.categoryList{
-            DispatchQueue.global().sync {
-                
-                NetworkManager.shared.getNews(for: ct) { result in
-                    switch result {
-                    case .success(let articles):
-                        createArticleEntityFrom(articles: articles, categoryName: ct)
-                        
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
+    // MARK: CoreData Init()
+     func coreDataInit(completion: @escaping  ()->Void) {
+         isLoading = true
+        
+        DispatchQueue.global(qos: .background).async {
+            addCategories()
+            for ct in Constants.categoryList{
+                DispatchQueue.global().sync {
                     
+                    NetworkManager.shared.getNews(for: ct) { result in
+                        switch result {
+                        case .success(let articles):
+                            createArticleEntityFrom(articles: articles, categoryName: ct)
+                            completion()
+                            
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                        
+                    }
                 }
+                
             }
-            
         }
     }
+    
 }
+
+
+
 
 
 //MARK: Create Categories
 func addCategories() {
-    
     for ct in Constants.categoryList{
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
         let category = CDCategory(context: context)
@@ -127,19 +117,41 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 }
 
 
+
+//MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        if !isLoading{
+            if let count = fetchedhResultController.sections?.first?.numberOfObjects {
+                        return count
+                    }
+        }
+        return 0
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
+        
+        if !isLoading{
+            let article = fetchedhResultController.object(at: indexPath) as! CDArticle
+            cell.newsTitle.text = article.title
+            cell.newsSource.text = article.seourceName
+            cell.newsPublishedData.text = article.publishedDate?.formatted()
+            return cell
+        }
         return cell
+        
+        
     }
+    
+    
     
 }
 
 
+//MARK: - Collectionview Delegate and Data source
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Constants.categoryModelList.count
@@ -148,9 +160,21 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = Constants.categoryModelList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
+        
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    
+}
+
+//MARK:- NS Fetch Request Controller delegate
+extension ViewController: NSFetchedResultsControllerDelegate{
+    
 }
