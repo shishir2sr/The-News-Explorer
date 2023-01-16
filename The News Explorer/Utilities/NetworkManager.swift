@@ -10,7 +10,8 @@ class NetworkManager: NSObject {
     
     private override init() {}
     static let shared = NetworkManager()
-    let newsUrl =  "https://newsapi.org/v2/top-headlines?apiKey=d5f4c3ef5deb4b68a286c9e0092bc3ce&category=$query&country=us"
+    
+    let newsUrl =  "https://newsapi.org/v2/top-headlines?apiKey=\(Constants.apikey[0])&category=$query&country=us"
     
     // MARK: Fetch news
     func getNews(for category: String, completed: @escaping (Result<[Article], CustomError>) -> Void) {

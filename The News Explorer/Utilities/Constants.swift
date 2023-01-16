@@ -9,6 +9,8 @@ import Foundation
 struct Constants{
     static let categoryList = ["Business", "Entertainment", "General", "Health", "Science", "Sports","Technology"]
     
+    static let apikey = ["4396288b402d4d2f92d9e4982980678e"]
+    
     static let categoryModelList: [CategoryModel] = [
         CategoryModel(categoryName: "All", categoryIcon: "globe.asia.australia.fill"),
         CategoryModel(categoryName: "Business", categoryIcon: "briefcase"),
