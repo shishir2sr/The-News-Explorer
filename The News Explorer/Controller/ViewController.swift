@@ -5,6 +5,16 @@ import CoreData
 class ViewController: UIViewController {
     var  articles: [Article] = []
     
+    lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+        
+            let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            frc.delegate = self
+            return frc
+        }()
+    
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,12 +28,7 @@ class ViewController: UIViewController {
 //         coreDataInit()
     }
     
-    @objc func searchButtonTapped(){
-        print("search button tapped")
-    }
 }
-
-
 
 
 // MARK: CoreData Init()
@@ -110,6 +115,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
+    
 }
 
 
@@ -133,5 +139,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         print(indexPath.row)
     }
     
+    
+}
+
+//MARK:- NS Fetch Request Controller delegate
+extension ViewController: NSFetchedResultsControllerDelegate{
     
 }
