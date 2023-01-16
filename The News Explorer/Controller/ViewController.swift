@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -25,10 +26,11 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        try? fetchedhResultController.performFetch()
 //        coreDataInit()
-        
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        try? fetchedhResultController.performFetch()
     }
     
 }
