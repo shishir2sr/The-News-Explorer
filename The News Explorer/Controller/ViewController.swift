@@ -10,25 +10,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let logoImageView = UIImageView(image: UIImage(named: "logo"))
-        logoImageView.contentMode = .scaleAspectFit
-
-        // Create a UIBarButtonItem using the image view
-        let logoButton = UIBarButtonItem(customView: logoImageView)
-
-        // Set the leftBarButtonItem of your navigation item
-        self.navigationItem.titleView = logoImageView
-        
-        // Create a text field
-//        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
-//        textField.placeholder = "Search"
-//        textField.textAlignment = .right
-//        textField.borderStyle = .roundedRect
-//
-//        // Set the text field as the titleView of the navigation item
-//        self.navigationItem.titleView = textField
-//        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-//  self.navigationItem.rightBarButtonItem = searchButton
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.dataSource = self
@@ -70,7 +51,6 @@ fileprivate func coreDataInit() {
 
 //MARK: Create Categories
 func addCategories() {
-    
     for ct in Constants.categoryList{
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
         let category = CDCategory(context: context)
@@ -117,23 +97,28 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 }
 
 
+
+//MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
+        
         return cell
     }
-    
 }
 
 
+//MARK: - Collectionview Delegate and Data source
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Constants.categoryModelList.count
     }
+    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = Constants.categoryModelList[indexPath.row]
@@ -141,5 +126,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.detailseSegue, sender: self)
+        
     }
 }

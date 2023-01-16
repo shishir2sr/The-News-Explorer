@@ -30,6 +30,7 @@ struct Constants{
     
     static let categoryCVCell = "cvcell"
     static let homeTableViewCell = "cell"
+    static let detailseSegue = "detailsview"
 }
 /**
  Business: "briefcase"
