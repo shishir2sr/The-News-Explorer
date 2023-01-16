@@ -1,6 +1,7 @@
 
 import UIKit
 import CoreData
+import SDWebImage
 
 class ViewController: UIViewController {
     var  articles: [Article] = []
@@ -151,6 +152,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
             cell.newsPublishedData.text = article.publishedDate?.formatted()
+            
+//            DispatchQueue.main.sync {
+//                guard let imgUrl = article.
+//            }
             return cell
         }
         return cell
@@ -170,6 +175,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
+        
         
         return cell
     }
