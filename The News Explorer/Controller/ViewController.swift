@@ -12,8 +12,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.dataSource = self
+        
 //         coreDataInit()
     }
     
@@ -118,19 +119,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         Constants.categoryModelList.count
     }
     
-
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = Constants.categoryModelList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
+        
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
+        
         return cell
     }
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Constants.detailseSegue, sender: self)
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
+    
+    
 }
