@@ -4,6 +4,7 @@ import CoreData
 
 class ViewController: UIViewController {
     var  articles: [Article] = []
+    var isLoading = false
     
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
@@ -21,43 +22,51 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        coreDataInit(){
+            try? self.fetchedhResultController.performFetch()
+            self.isLoading = false
+            self.tableView.reloadData()
+        }
+        
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        coreDataInit()
+        
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        try? fetchedhResultController.performFetch()
-    }
-    
-}
-
-
-// MARK: CoreData Init()
-fileprivate func coreDataInit() {
-    DispatchQueue.global(qos: .background).async {
-        addCategories()
-        for ct in Constants.categoryList{
-            DispatchQueue.global().sync {
-                
-                NetworkManager.shared.getNews(for: ct) { result in
-                    switch result {
-                    case .success(let articles):
-                        createArticleEntityFrom(articles: articles, categoryName: ct)
-                        
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
+    // MARK: CoreData Init()
+     func coreDataInit(completion: @escaping  ()->Void) {
+         isLoading = true
+        
+        DispatchQueue.global(qos: .background).async {
+            addCategories()
+            for ct in Constants.categoryList{
+                DispatchQueue.global().sync {
                     
+                    NetworkManager.shared.getNews(for: ct) { result in
+                        switch result {
+                        case .success(let articles):
+                            createArticleEntityFrom(articles: articles, categoryName: ct)
+                            completion()
+                            
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                        
+                    }
                 }
+                
             }
-            
         }
     }
+    
 }
+
+
+
 
 
 //MARK: Create Categories
@@ -112,19 +121,29 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 //MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = fetchedhResultController.sections?.first?.numberOfObjects {
-                    return count
-                }
-                return 5
+        if !isLoading{
+            if let count = fetchedhResultController.sections?.first?.numberOfObjects {
+                        return count
+                    }
+        }
+        return 0
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
-        let article = fetchedhResultController.object(at: indexPath) as! CDArticle
-        cell.newsTitle.text = article.title
-        cell.newsSource.text = article.seourceName
-        cell.newsPublishedData.text = article.publishedDate?.formatted()
+        
+        if !isLoading{
+            let article = fetchedhResultController.object(at: indexPath) as! CDArticle
+            cell.newsTitle.text = article.title
+            cell.newsSource.text = article.seourceName
+            cell.newsPublishedData.text = article.publishedDate?.formatted()
+            return cell
+        }
         return cell
+        
+        
     }
     
     
