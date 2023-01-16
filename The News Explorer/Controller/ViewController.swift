@@ -25,7 +25,10 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//         coreDataInit()
+        try? fetchedhResultController.performFetch()
+//        coreDataInit()
+        
+
     }
     
 }
@@ -107,14 +110,22 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 //MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        if let count = fetchedhResultController.sections?.first?.numberOfObjects {
+                    return count
+                }
+                return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
-        
+        let article = fetchedhResultController.object(at: indexPath) as! CDArticle
+        cell.newsTitle.text = article.title
+        cell.newsSource.text = article.seourceName
+        cell.newsPublishedData.text = article.publishedDate?.formatted()
         return cell
     }
+    
+    
     
 }
 

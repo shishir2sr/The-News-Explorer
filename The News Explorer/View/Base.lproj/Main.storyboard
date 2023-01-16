@@ -37,24 +37,24 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BBC NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpa-HU-FCE">
-                                                    <rect key="frame" x="185" y="15" width="170" height="9"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="8"/>
+                                                    <rect key="frame" x="185" y="15" width="170" height="11.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="10"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndx-V5-4jc">
-                                                    <rect key="frame" x="185" y="27.000000000000004" width="185" height="51.333333333333343"/>
+                                                    <rect key="frame" x="185" y="29.333333333333332" width="185" height="51.333333333333343"/>
                                                     <string key="text">Grim task of identifying the dead begins after Nepal plane crash Grim task of identifying the dead begins after Nepal plane crash</string>
                                                     <fontDescription key="fontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-vN-psP">
-                                                    <rect key="frame" x="185" y="86.333333333333329" width="165" height="20"/>
+                                                    <rect key="frame" x="185" y="88.666666666666671" width="165" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon 16 Jan, 10:43 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atv-au-b7j">
                                                             <rect key="frame" x="0.0" y="0.0" width="101" height="20"/>
-                                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="8"/>
+                                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

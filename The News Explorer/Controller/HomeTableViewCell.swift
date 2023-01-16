@@ -30,5 +30,11 @@ class HomeTableViewCell: UITableViewCell {
         sender.setImage(UIImage(named: "star-filled"), for: .normal)
     }
     
+    func setArticleWith(article: CDArticle){
+        self.newsTitle.text = article.title
+        self.newsSource.text = article.seourceName
+        self.newsPublishedData.text = article.publishedDate?.formatted()
+    }
+    
 
 }
