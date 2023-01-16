@@ -27,23 +27,13 @@ class ViewController: UIViewController {
 //
 //        // Set the text field as the titleView of the navigation item
 //        self.navigationItem.titleView = textField
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-
-
-        
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        self.navigationItem.rightBarButtonItem = searchButton
-        
+//        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+//  self.navigationItem.rightBarButtonItem = searchButton
         tableView.delegate = self
         tableView.dataSource = self
-        
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        
-        // coreDataInit()
+//         coreDataInit()
     }
     
     @objc func searchButtonTapped(){
@@ -150,7 +140,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
-        
         return cell
     }
 }
