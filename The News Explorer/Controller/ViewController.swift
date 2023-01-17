@@ -4,22 +4,19 @@ import CoreData
 import SDWebImage
 
 class ViewController: UIViewController {
+    
     var  articles: [Article] = []
     var isLoading = false
-    
     
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "publishedDate", ascending: true)]
         fetchRequest.fetchBatchSize = 10
-        
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
         return frc
     }()
-    
-    
     
     
     // MARK: Outlets
@@ -27,48 +24,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    //MARK: View didi load method
+    //MARK: ViewDidLoad method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
-        print(hasLaunchedBefore)
-            if !hasLaunchedBefore {
-                addCategories()
-                coreDataInit(){
-                    try? self.fetchedhResultController.performFetch()
-                    self.isLoading = false
-                    self.tableView.reloadData()
-                }
-                UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-                
-            } else{
-                try? self.fetchedhResultController.performFetch()
-                self.isLoading = false
-                self.tableView.reloadData()
-            }
-        
-       
-        
-        
-        
+        firstLaunch()
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
-        
     }
     
     // MARK: CoreData Init()
     func coreDataInit(completion: @escaping  ()->Void) {
         isLoading = true
-        
         DispatchQueue.global(qos: .background).async {
-            
-
-            
             for ct in Constants.categoryList{
                 DispatchQueue.global().async {
                     NetworkManager.shared.getNews(for: ct) { result in
@@ -88,8 +58,28 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    //MARK: First launch logic
+    fileprivate func firstLaunch() {
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        print(hasLaunchedBefore)
+        if !hasLaunchedBefore {
+            addCategories()
+            coreDataInit(){
+                try? self.fetchedhResultController.performFetch()
+                self.isLoading = false
+                self.tableView.reloadData()
+            }
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            
+        } else{
+            try? self.fetchedhResultController.performFetch()
+            self.isLoading = false
+            self.tableView.reloadData()
+        }
+    }
+    
 }
-
 
 
 
@@ -144,7 +134,6 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
 }
 
 
-
 //MARK: - Tableview delegate and datasource
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,7 +160,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-  
+    
 }
 
 
@@ -190,11 +179,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
     }
-    
-    
 }
 
 //MARK:- NS Fetch Request Controller delegate
