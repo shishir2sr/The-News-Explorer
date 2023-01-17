@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     
     var  articles: [Article] = []
     var isLoading = false
-
+    
     
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
@@ -18,20 +18,7 @@ class ViewController: UIViewController {
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
         return frc
-        
     }()
-    
-    lazy var fetchedhResultController2: NSFetchedResultsController<NSFetchRequestResult> = {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "publishedDate", ascending: true)]
-        fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", "business")
-        fetchRequest.fetchBatchSize = 10
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        frc.delegate = self
-        return frc
-    }()
-    
-    
     
     
     
@@ -41,7 +28,7 @@ class ViewController: UIViewController {
     
     
     //MARK: ViewDidLoad method
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         firstLaunch()
@@ -50,40 +37,48 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
-    //MARK: First launch logic
+    
+    //MARK: First launch
     fileprivate func firstLaunch() {
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         print(hasLaunchedBefore)
         
         if !hasLaunchedBefore {
-            addCategories()
+            CoreDataManager.addCategories()
             coreDataInit(){
-                try? self.fetchedhResultController.performFetch()
-                self.isLoading = false
-                self.tableView.reloadData()
+                self.refreshCoreData()
             }
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
             
         } else{
-            try? self.fetchedhResultController.performFetch()
-            self.isLoading = false
-            self.tableView.reloadData()
+            refreshCoreData()
         }
+    }
+    
+    
+    // MARK: Refresh coredata
+    fileprivate func refreshCoreData() {
+        self.isLoading = false
+        do {
+            try self.fetchedhResultController.performFetch()
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+        self.tableView.reloadData()
     }
     
     // reload table data
     
-//    func reloadTableData(collectionViewIndexPath: Int) {
-//        self.collectionVCIndexPath = collectionViewIndexPath
-//        do {
-//            try self.fetchedhResultController.performFetch()
-//        } catch {
-//            print("Error fetching data: \(error)")
-//        }
-//        self.tableView.reloadData()
-//    }
-//
+    //    func reloadTableData(collectionViewIndexPath: Int) {
+    //        self.collectionVCIndexPath = collectionViewIndexPath
+    //        do {
+    //            try self.fetchedhResultController.performFetch()
+    //        } catch {
+    //            print("Error fetching data: \(error)")
+    //        }
+    //        self.tableView.reloadData()
+    //    }
+    //
     
     
     // MARK: CoreData Init()
@@ -217,18 +212,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     // MARK: DidSelectItem At
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
         
         print(indexPath.row)
         isLoading = false
         
         do{
-            let categoryName = Constants.categoryModelList[indexPath.row].categoryName
+     
+            if indexPath.row > 0{
+                let categoryName = Constants.categoryModelList[indexPath.row].categoryName
+                fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)
+                try fetchedhResultController.performFetch()
+                
+            }else{
+                fetchedhResultController.fetchRequest.predicate = nil
+                try fetchedhResultController.performFetch()
+            }
             
-            if indexPath.row > 0{fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)}
-        
-            try fetchedhResultController.performFetch()
             
         }catch{
             print(error.localizedDescription)
