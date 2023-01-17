@@ -184,8 +184,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsPublishedData.text = article.publishedDate?.formatted()
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             
-            cell.newsImage.layer.cornerRadius = 5
-            cell.layer.borderWidth = 1
+            cell.newsImage.layer.cornerRadius = 8
+//            cell.layer.borderWidth = 1
             
             return cell
         }
@@ -280,11 +280,10 @@ extension ViewController: UITextFieldDelegate{
             // call a method
             self.searchNews(For: textField.text!)
         }
-        
         searchTextField.text = ""
     }
     
-    // MARK: Seardch work
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
