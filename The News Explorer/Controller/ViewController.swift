@@ -32,8 +32,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firstLaunch()
-        
-        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font : UIFont.systemFont(ofSize: 20),
+            .foregroundColor: UIColor.red
+          ]
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
@@ -48,11 +50,8 @@ class ViewController: UIViewController {
         refreshCoreData()
     }
     
-   
-    
-    
-    
-    //MARK: First launch
+
+//MARK: First launch
     fileprivate func firstLaunch() {
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         print(hasLaunchedBefore)
@@ -285,5 +284,12 @@ extension ViewController: UITextFieldDelegate{
         searchTextField.text = ""
     }
     
+    // MARK: Seardch work
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+        refreshCoreData()
+        return true
+    }
     
 }
