@@ -20,8 +20,6 @@ class ViewController: UIViewController {
         return frc
     }()
     
-    
-    
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -32,6 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firstLaunch()
+        
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
@@ -66,35 +65,25 @@ class ViewController: UIViewController {
         }
         self.tableView.reloadData()
     }
-    
-    // reload table data
-    
-    //    func reloadTableData(collectionViewIndexPath: Int) {
-    //        self.collectionVCIndexPath = collectionViewIndexPath
-    //        do {
-    //            try self.fetchedhResultController.performFetch()
-    //        } catch {
-    //            print("Error fetching data: \(error)")
-    //        }
-    //        self.tableView.reloadData()
-    //    }
-    //
+
     
     
     // MARK: CoreData Init()
     func coreDataInit(completion: @escaping  ()->Void) {
         isLoading = true
+        
         DispatchQueue.global(qos: .background).async {
+            
             for ct in Constants.categoryList{
                 DispatchQueue.global().async {
                     NetworkManager.shared.getNews(for: ct) { result in
                         switch result {
                         case .success(let articles):
-                            createArticleEntityFrom(articles: articles, categoryName: ct)
+                            CoreDataManager.createArticleEntityFrom(articles: articles, categoryName: ct)
                             completion()
                             
                         case .failure(let error):
-                            print(error.localizedDescription)
+                            self.showAlertWith(title: "Erro!", message: error.localizedDescription)
                         }
                         
                     }
@@ -104,56 +93,52 @@ class ViewController: UIViewController {
         }
     }
     
-}
-
-//MARK: Create Categories
-func addCategories() {
-    for ct in Constants.categoryList{
+    // MARK: Show Alert
+    func showAlertWith(title: String, message: String, style: UIAlertController.Style = .alert) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let action = UIAlertAction(title: title, style: .default) {[weak self] (action) in
+            guard let self = self else{return}
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Create Articles
+     func createArticleEntityFrom(articles: [Article], categoryName: String){
+         
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
-        let category = CDCategory(context: context)
-        category.categoryName = ct
-        do {
-            try context.save()
-            print("\(ct) created")
-        } catch {
-            print(error)
-            print("Category already exist")
+        
+        for article in articles {
+            let cdArticle = CDArticle(context: context)
+            cdArticle.seourceName = article.source.name
+            cdArticle.author = article.author
+            cdArticle.title = article.title
+            cdArticle.descriptionText = article.description
+            cdArticle.newsUrl = article.url
+            cdArticle.publishedDate = article.publishedAt
+            cdArticle.content = article.content
+            cdArticle.imageUrl = article.urlToImage
+            
+            let fetchRequest = NSFetchRequest<CDCategory>(entityName: "CDCategory")
+            fetchRequest.predicate = NSPredicate(format: "categoryName == %@", categoryName)
+            
+            do {
+                let category = try context.fetch(fetchRequest).first
+                category?.articles?.adding(cdArticle)
+                cdArticle.category = category
+                try context.save()
+                print("\(categoryName) items added")
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
 }
 
-//MARK: Create Articles
-private func createArticleEntityFrom(articles: [Article], categoryName: String){
-    let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
-    
-    for article in articles {
-        let cdArticle = CDArticle(context: context)
-        cdArticle.seourceName = article.source.name
-        cdArticle.author = article.author
-        cdArticle.title = article.title
-        cdArticle.descriptionText = article.description
-        cdArticle.newsUrl = article.url
-        cdArticle.publishedDate = article.publishedAt
-        cdArticle.content = article.content
-        cdArticle.imageUrl = article.urlToImage
-        
-        let fetchRequest = NSFetchRequest<CDCategory>(entityName: "CDCategory")
-        fetchRequest.predicate = NSPredicate(format: "categoryName == %@", categoryName)
-        
-        do {
-            let category = try context.fetch(fetchRequest).first
-            category?.articles?.adding(cdArticle)
-            cdArticle.category = category
-            try context.save()
-            print("\(categoryName) items added")
-        }catch{
-            print(error.localizedDescription)
-        }
-        
-        
-    }
-    
-}
+
+
+
 
 
 //MARK: - Tableview delegate and datasource
@@ -178,6 +163,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsSource.text = article.seourceName
             cell.newsPublishedData.text = article.publishedDate?.formatted()
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
+            
+            cell.newsImage.layer.cornerRadius = 5
+            cell.layer.borderWidth = 1
+            
             return cell
         }
         return cell
@@ -214,28 +203,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
-        
         print(indexPath.row)
+        selectItemFromCategories(indexPath)
+    }
+    
+    
+    
+    //MARK: Done
+    fileprivate func selectItemFromCategories(_ indexPath: IndexPath) {
         isLoading = false
-        
         do{
-     
             if indexPath.row > 0{
                 let categoryName = Constants.categoryModelList[indexPath.row].categoryName
                 fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)
                 try fetchedhResultController.performFetch()
-                
             }else{
                 fetchedhResultController.fetchRequest.predicate = nil
                 try fetchedhResultController.performFetch()
             }
             
-            
         }catch{
             print(error.localizedDescription)
         }
         tableView.reloadData()
-        
     }
 }
 
