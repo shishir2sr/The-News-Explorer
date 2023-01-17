@@ -2,7 +2,7 @@
 //  CDArticle+CoreDataClass.swift
 //  The News Explorer
 //
-//  Created by Yeasir Arefin Tusher on 15/1/23.
+//  Created by bjit on 17/1/23.
 //
 //
 
