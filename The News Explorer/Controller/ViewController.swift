@@ -7,9 +7,12 @@ class ViewController: UIViewController {
     var  articles: [Article] = []
     var isLoading = false
     
+    
+    // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "publishedDate", ascending: true)]
+        fetchRequest.fetchBatchSize = 10
         
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.sharedInstance.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
@@ -17,10 +20,14 @@ class ViewController: UIViewController {
     }()
     
     
+    
+    
+    // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
     
+    //MARK: View didi load method
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,16 +35,22 @@ class ViewController: UIViewController {
         print(hasLaunchedBefore)
             if !hasLaunchedBefore {
                 addCategories()
+                coreDataInit(){
+                    try? self.fetchedhResultController.performFetch()
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                }
                 UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+                
+            } else{
+                try? self.fetchedhResultController.performFetch()
+                self.isLoading = false
+                self.tableView.reloadData()
             }
         
+       
         
         
-        coreDataInit(){
-            try? self.fetchedhResultController.performFetch()
-            self.isLoading = false
-            self.tableView.reloadData()
-        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,11 +67,10 @@ class ViewController: UIViewController {
         
         DispatchQueue.global(qos: .background).async {
             
-            //
+
             
             for ct in Constants.categoryList{
                 DispatchQueue.global().async {
-                    
                     NetworkManager.shared.getNews(for: ct) { result in
                         switch result {
                         case .success(let articles):
@@ -111,6 +123,7 @@ private func createArticleEntityFrom(articles: [Article], categoryName: String){
         cdArticle.newsUrl = article.url
         cdArticle.publishedDate = article.publishedAt
         cdArticle.content = article.content
+        cdArticle.imageUrl = article.urlToImage
         
         let fetchRequest = NSFetchRequest<CDCategory>(entityName: "CDCategory")
         fetchRequest.predicate = NSPredicate(format: "categoryName == %@", categoryName)
@@ -152,14 +165,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
             cell.newsPublishedData.text = article.publishedDate?.formatted()
-            
-//            DispatchQueue.main.sync {
-//                guard let imgUrl = article.
-//            }
+            cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             return cell
         }
         return cell
     }
+    
+  
 }
 
 
@@ -175,8 +187,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
-        
-        
         return cell
     }
     
