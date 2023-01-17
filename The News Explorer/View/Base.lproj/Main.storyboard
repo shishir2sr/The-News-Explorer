@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oHa-pM-VEk">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -15,57 +15,58 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="The_News_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GNM-SW-504">
-                                <rect key="frame" x="5" y="169" width="320" height="350"/>
+                                <rect key="frame" x="5" y="216" width="375" height="513"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="120" id="Yuc-O8-9wh" customClass="HomeTableViewCell" customModule="The_News_Explorer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yuc-O8-9wh" id="ctn-Hq-7Wt">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qXz-g3-YES">
-                                                    <rect key="frame" x="0.0" y="11" width="180" height="97.5"/>
+                                                    <rect key="frame" x="0.0" y="11.666666666666664" width="180" height="97"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="gRD-PV-d35"/>
                                                         <constraint firstAttribute="width" constant="180" id="pa2-xf-Ur9"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BBC NEWS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpa-HU-FCE">
-                                                    <rect key="frame" x="185" y="15" width="119" height="11.5"/>
+                                                    <rect key="frame" x="185" y="15" width="170" height="11.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="10"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndx-V5-4jc">
-                                                    <rect key="frame" x="185" y="29.5" width="130" height="51.5"/>
+                                                    <rect key="frame" x="185" y="29.333333333333332" width="185" height="51.333333333333343"/>
                                                     <string key="text">Grim task of identifying the dead begins after Nepal plane crash Grim task of identifying the dead begins after Nepal plane crash</string>
                                                     <fontDescription key="fontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-vN-psP">
-                                                    <rect key="frame" x="185" y="89" width="114" height="15"/>
+                                                    <rect key="frame" x="185" y="88.666666666666671" width="165" height="15"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon 16 Jan, 10:43 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atv-au-b7j">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="15"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="15"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-7n-56X">
-                                                            <rect key="frame" x="99" y="0.0" width="15" height="15"/>
+                                                            <rect key="frame" x="121" y="0.0" width="44" height="15"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="T5w-UC-nYX"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="T5w-UC-nYX"/>
                                                                 <constraint firstAttribute="height" constant="15" id="sg7-IT-L4F"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="">
+                                                            <buttonConfiguration key="configuration" style="plain" title="">
+                                                                <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
                                                                 <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </buttonConfiguration>
                                                             <connections>
@@ -100,7 +101,7 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mdQ-xp-6I0">
-                                <rect key="frame" x="5" y="44" width="320" height="120"/>
+                                <rect key="frame" x="5" y="91" width="375" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="bxf-bC-XuX"/>
@@ -167,9 +168,25 @@
                             <constraint firstItem="mdQ-xp-6I0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="5" id="yxz-8s-dWS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" style="editor" id="S5J-hp-m4I"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" style="editor" id="S5J-hp-m4I">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="right" minimumFontSize="17" id="z1a-rH-Bf5">
+                            <rect key="frame" x="70" y="5" width="235" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="search" id="3z5-6C-isz">
+                            <color key="tintColor" red="0.3785389079" green="0.4867502836" blue="0.63910049199999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="BYZ-38-t0r" id="h5F-ph-KxZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="mdQ-xp-6I0" id="TSu-B3-a1Y"/>
+                        <outlet property="searchButton" destination="3z5-6C-isz" id="u7q-uk-uhK"/>
+                        <outlet property="searchTextField" destination="z1a-rH-Bf5" id="qfe-1C-qUz"/>
                         <outlet property="tableView" destination="GNM-SW-504" id="xrR-gS-mIu"/>
                         <segue destination="rwX-dA-16r" kind="presentation" identifier="detailsview" id="DRz-OU-xh5"/>
                     </connections>
@@ -183,11 +200,11 @@
             <objects>
                 <viewController id="rwX-dA-16r" customClass="DetailsVC" customModule="The_News_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lBv-4h-aRL" customClass="DetailsView" customModule="The_News_Explorer" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-Se-j0x">
-                                <rect key="frame" x="0.0" y="1" width="320" height="162"/>
+                                <rect key="frame" x="0.0" y="1.6666666666666714" width="375" height="223.66666666666669"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NoP-N5-eoG"/>
@@ -212,7 +229,7 @@
             <objects>
                 <viewController id="5Y9-1N-loD" customClass="BookmarkViewController" customModule="The_News_Explorer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cRo-V1-EQE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="1X6-G3-lg2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -255,7 +272,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHF-Rm-VC0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
