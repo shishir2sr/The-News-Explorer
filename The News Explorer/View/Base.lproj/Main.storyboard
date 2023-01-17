@@ -50,19 +50,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-vN-psP">
-                                                    <rect key="frame" x="185" y="89" width="114" height="20"/>
+                                                    <rect key="frame" x="185" y="89" width="114" height="15"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon 16 Jan, 10:43 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atv-au-b7j">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="15"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-7n-56X">
-                                                            <rect key="frame" x="89" y="0.0" width="25" height="20"/>
+                                                            <rect key="frame" x="99" y="0.0" width="15" height="15"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="T5w-UC-nYX"/>
-                                                                <constraint firstAttribute="height" constant="20" id="sg7-IT-L4F"/>
+                                                                <constraint firstAttribute="width" constant="15" id="T5w-UC-nYX"/>
+                                                                <constraint firstAttribute="height" constant="15" id="sg7-IT-L4F"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="">
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904.8000000000002" y="-34.729064039408868"/>
+            <point key="canvasLocation" x="2904.375" y="-34.859154929577464"/>
         </scene>
         <!--DetailsVC-->
         <scene sceneID="USp-Gd-38b">
@@ -255,7 +255,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHF-Rm-VC0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
