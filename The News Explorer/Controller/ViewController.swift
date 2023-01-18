@@ -43,13 +43,9 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         searchTextField.delegate = self
-        
-        
-        refreshControl.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
+
+        refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
-        
-        
-        
 
     }
     
@@ -60,12 +56,10 @@ class ViewController: UIViewController {
            }
        }
     
-    @objc func refreshTableView(){
-        print("Pull to refresh")
-        refreshControl.endRefreshing()
+    @objc func refreshPull(sender: UIRefreshControl) {
         
+        sender.endRefreshing()
     }
-    
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         searchNews(For: searchTextField.text!)
@@ -259,6 +253,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         performSegue(withIdentifier: Constants.detailseSegue, sender: self)
     }
+    
+    
     
 }
 
