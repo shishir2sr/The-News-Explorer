@@ -61,7 +61,8 @@ class ViewController: UIViewController {
        }
     
     @objc func refreshTableView(){
-        
+        print("Pull to refresh")
+        refreshControl.endRefreshing()
         
     }
     

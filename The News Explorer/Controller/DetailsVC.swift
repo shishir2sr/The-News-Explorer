@@ -31,6 +31,14 @@ class DetailsVC: UIViewController {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.webkitSegue {
+               let safariVC = segue.destination as! WebKitViewController
+            safariVC.newsUrl = currentArticle.newsUrl
+           }
+       }
+    
+    
     @IBAction func continueReading(_ sender: UIButton) {
         
     }

@@ -90,11 +90,11 @@
 			isa = PBXGroup;
 			children = (
 				896B952A29714DA90070BBE5 /* ViewController.swift */,
-				38D2110129744053004D768A /* BookmarkViewController.swift */,
-				38D2110529745038004D768A /* CategoryCollectionVC.swift */,
-				898831732974EF93004CE28D /* HomeTableViewCell.swift */,
-				89883179297517E7004CE28D /* DetailsVC.swift */,
 				89D8DB912977F455004C6977 /* WebKitViewController.swift */,
+				38D2110529745038004D768A /* CategoryCollectionVC.swift */,
+				38D2110129744053004D768A /* BookmarkViewController.swift */,
+				89883179297517E7004CE28D /* DetailsVC.swift */,
+				898831732974EF93004CE28D /* HomeTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
