@@ -7,6 +7,8 @@ class ViewController: UIViewController {
     
     var  articles: [Article] = []
     var isLoading = false
+    let refreshControl = UIRefreshControl()
+    var currentArticle: CDArticle!
     
     
     // MARK: FetchedResultController
@@ -23,31 +25,59 @@ class ViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet weak var categoryNameLabel: UILabel!
+    
     
     //MARK: ViewDidLoad method
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         firstLaunch()
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font : UIFont.systemFont(ofSize: 20),
-            .foregroundColor: UIColor.red
-          ]
+        populateTableViewIfNoData()
+
+        // delegates
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
         searchTextField.delegate = self
+
+        refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refreshControl)
+
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.detailseSegue {
+               let detailVC = segue.destination as! DetailsVC
+               detailVC.currentArticle = currentArticle
+           }
+       }
+    
+    @objc func refreshPull(sender: UIRefreshControl) {
+        
+        sender.endRefreshing()
+    }
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-        
+        searchNews(For: searchTextField.text!)
         searchTextField.endEditing(true)
         refreshCoreData()
+    }
+    
+    // MARK: populate tableview if there is no data
+    fileprivate func populateTableViewIfNoData() {
+        if let fetchedObjects = fetchedhResultController.fetchedObjects, !fetchedObjects.isEmpty {
+            print("Coredata has data")
+            refreshCoreData()
+        } else {
+            print("Coredata empty")
+            coreDataInit {
+                self.refreshCoreData()
+            }
+        }
     }
     
 
@@ -58,15 +88,28 @@ class ViewController: UIViewController {
         
         if !hasLaunchedBefore {
             CoreDataManager.addCategories()
-            coreDataInit(){
-                self.refreshCoreData()
-            }
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
             
         } else{
             refreshCoreData()
         }
     }
+    
+    
+    // MARK: Delete articles
+    func deleteAllArticles() {
+        do {
+            try fetchedhResultController.performFetch()
+            let articlesToDelete = fetchedhResultController.fetchedObjects as! [CDArticle]
+            for article in articlesToDelete {
+                CoreDataStack.sharedInstance.persistentContainer.viewContext.delete(article)
+            }
+            CoreDataStack.sharedInstance.saveContext()
+        } catch {
+            print("Error deleting articles: \(error)")
+        }
+    }
+
     
     
     // MARK: Refresh coredata
@@ -76,6 +119,7 @@ class ViewController: UIViewController {
             try self.fetchedhResultController.performFetch()
         } catch {
             print("Error fetching data: \(error)")
+            showAlertWith(title: "Coredata Error!", message: error.localizedDescription)
         }
         self.tableView.reloadData()
     }
@@ -107,6 +151,13 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // MARK: Create pull to refresh
+    func coreDataPullReq(completion: @escaping  (_ art:[Article],_ categoryName:String)->Void) {
+      
+    }
+    
+    
     // MARK: Show Alert
     func showAlertWith(title: String, message: String, style: UIAlertController.Style = .alert) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
@@ -117,6 +168,7 @@ class ViewController: UIViewController {
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
+    
     
     // MARK: Search News
     func searchNews(For searchText: String){
@@ -173,20 +225,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return 0
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
         
         if !isLoading{
             let article = fetchedhResultController.object(at: indexPath) as! CDArticle
-            
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
-            cell.newsPublishedData.text = article.publishedDate?.formatted()
+            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .omitted, time: .shortened)
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
-            
             cell.newsImage.layer.cornerRadius = 8
-//            cell.layer.borderWidth = 1
             
+            
+
             return cell
         }
         return cell
@@ -196,7 +248,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        self.currentArticle = fetchedhResultController.object(at: indexPath) as? CDArticle
+        
+        performSegue(withIdentifier: Constants.detailseSegue, sender: self)
     }
+    
+    
     
 }
 
@@ -213,7 +271,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = Constants.categoryModelList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
-        
+
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
         return cell
@@ -223,6 +281,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
+        
+        let category = Constants.categoryModelList[indexPath.row]
+                categoryNameLabel.text = category.categoryName
+        
         print(indexPath.row)
         selectItemFromCategories(indexPath)
     }
@@ -261,7 +323,8 @@ extension ViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(textField.text!)
-        searchTextField.endEditing(true)
+        searchNews(For: textField.text!)
+        textField.endEditing(true)
         return true
     }
     
@@ -270,24 +333,31 @@ extension ViewController: UITextFieldDelegate{
             return true
         }
         else{
-            searchTextField.placeholder = "Write something"
+            textField.placeholder = "Write something"
             return false
         }
     }
     
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if searchTextField.text != ""{
-            // call a method
             self.searchNews(For: textField.text!)
         }
+        self.searchNews(For: textField.text!)
         searchTextField.text = ""
+        
     }
     
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+        if text != ""{
+            fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", text)
+            categoryNameLabel.text = "Search Result"
+        }
         refreshCoreData()
+        categoryNameLabel.text = "Search Result"
         return true
     }
     

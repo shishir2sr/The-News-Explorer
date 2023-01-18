@@ -29,6 +29,7 @@
 		89883181297633C0004CE28D /* CDCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8988317D297633C0004CE28D /* CDCategory+CoreDataClass.swift */; };
 		89883182297633C0004CE28D /* CDCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8988317E297633C0004CE28D /* CDCategory+CoreDataProperties.swift */; };
 		8988318429768A50004CE28D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8988318329768A50004CE28D /* CoreDataManager.swift */; };
+		89D8DB922977F455004C6977 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D8DB912977F455004C6977 /* WebKitViewController.swift */; };
 		8DD1F336480466712574EAEB /* Pods_The_News_Explorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D7DF7D287AF94660A0CA33 /* Pods_The_News_Explorer.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		8988317D297633C0004CE28D /* CDCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8988317E297633C0004CE28D /* CDCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8988318329768A50004CE28D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		89D8DB912977F455004C6977 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
 		E65510334928951530FB4275 /* Pods-The News Explorer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The News Explorer.debug.xcconfig"; path = "Target Support Files/Pods-The News Explorer/Pods-The News Explorer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,10 +90,11 @@
 			isa = PBXGroup;
 			children = (
 				896B952A29714DA90070BBE5 /* ViewController.swift */,
-				38D2110129744053004D768A /* BookmarkViewController.swift */,
-				38D2110529745038004D768A /* CategoryCollectionVC.swift */,
-				898831732974EF93004CE28D /* HomeTableViewCell.swift */,
 				89883179297517E7004CE28D /* DetailsVC.swift */,
+				89D8DB912977F455004C6977 /* WebKitViewController.swift */,
+				38D2110529745038004D768A /* CategoryCollectionVC.swift */,
+				38D2110129744053004D768A /* BookmarkViewController.swift */,
+				898831732974EF93004CE28D /* HomeTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				38A4A7F22972AB8100F504DD /* Constants.swift in Sources */,
 				898831742974EF93004CE28D /* HomeTableViewCell.swift in Sources */,
 				89883181297633C0004CE28D /* CDCategory+CoreDataClass.swift in Sources */,
+				89D8DB922977F455004C6977 /* WebKitViewController.swift in Sources */,
 				89883180297633C0004CE28D /* CDArticle+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
