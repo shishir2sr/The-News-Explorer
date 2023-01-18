@@ -2,7 +2,7 @@
 //  BookmarkedArticle+CoreDataProperties.swift
 //  
 //
-//  Created by bjit on 18/1/23.
+//  Created by Yeasir Arefin Tusher on 18/1/23.
 //
 //
 
@@ -24,5 +24,6 @@ extension BookmarkedArticle {
     @NSManaged public var publishedDate: Date?
     @NSManaged public var sourceName: String?
     @NSManaged public var title: String?
+    @NSManaged public var category: String?
 
 }

@@ -161,7 +161,8 @@ class ViewController: UIViewController {
     // MARK: Show Alert
     func showAlertWith(title: String, message: String, style: UIAlertController.Style = .alert) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        let action = UIAlertAction(title: title, style: .default) {[weak self] (action) in
+        
+        let action = UIAlertAction(title: "ok", style: .default) {[weak self] (action) in
             guard let self = self else{return}
             self.dismiss(animated: true, completion: nil)
         }
@@ -253,6 +254,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         performSegue(withIdentifier: Constants.detailseSegue, sender: self)
     }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let bookmarkAction = UIContextualAction(style: .normal, title: "Bookmark") { (action, view, completion) in
+            
+            if let cdArticle = self.fetchedhResultController.object(at: indexPath) as? CDArticle{
+                CoreDataManager.addBookmark(article: cdArticle){ result in
+                    switch result{
+                    
+                    case .success(let success):
+                        self.showAlertWith(title: "Success", message: success)
+                    case .failure(let error):
+                        self.showAlertWith(title: "Failed", message: error.localizedDescription)
+                    }
+                }
+                
+            }else
+            {
+                print("Already bookmarked")
+            }
+            
+            completion(true)
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [bookmarkAction])
+        return swipeActions
+    }
+
     
     
     

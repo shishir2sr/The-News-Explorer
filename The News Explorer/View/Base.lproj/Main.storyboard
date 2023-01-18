@@ -110,29 +110,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="B3D-vN-psP">
-                                                    <rect key="frame" x="188" y="95" width="142" height="15"/>
+                                                    <rect key="frame" x="188" y="96.666666666666671" width="142" height="13.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon 16 Jan, 10:43 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atv-au-b7j">
-                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="15"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="142" height="13.333333333333334"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOM-7n-56X">
-                                                            <rect key="frame" x="107" y="0.0" width="35" height="15"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="T5w-UC-nYX"/>
-                                                                <constraint firstAttribute="height" constant="15" id="sg7-IT-L4F"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="">
-                                                                <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
-                                                                <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="starButtonTapped:" destination="Yuc-O8-9wh" eventType="touchUpInside" id="pYs-hI-hEc"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -414,7 +399,6 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="placeholder" width="275" height="183"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
