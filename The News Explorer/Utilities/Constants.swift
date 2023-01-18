@@ -8,6 +8,10 @@
 import Foundation
 struct Constants{
     static let categoryList = ["Business", "Entertainment", "General", "Health", "Science", "Sports","Technology"]
+    static let categoryCVCell = "cvcell"
+    static let homeTableViewCell = "cell"
+    static let detailseSegue = "detailsview"
+    static let placeholderImage = "placeholder"
     
     static let apikey = ["4396288b402d4d2f92d9e4982980678e"]
     
@@ -30,9 +34,7 @@ struct Constants{
          */
     ]
     
-    static let categoryCVCell = "cvcell"
-    static let homeTableViewCell = "cell"
-    static let detailseSegue = "detailsview"
+    
 }
 /**
  Business: "briefcase"

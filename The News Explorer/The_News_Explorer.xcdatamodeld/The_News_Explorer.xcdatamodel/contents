@@ -14,10 +14,5 @@
     <entity name="CDCategory" representedClassName="CDCategory" syncable="YES">
         <attribute name="categoryName" optional="YES" attributeType="String"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDArticle" inverseName="category" inverseEntity="CDArticle"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="categoryName"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
 </model>

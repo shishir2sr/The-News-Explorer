@@ -7,6 +7,9 @@ class ViewController: UIViewController {
     
     var  articles: [Article] = []
     var isLoading = false
+    let refreshControl = UIRefreshControl()
+    var currentArticle: CDArticle!
+    
     
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
@@ -22,10 +25,8 @@ class ViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIBarButtonItem!
-    
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     
@@ -34,7 +35,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         firstLaunch()
-        
+        populateTableViewIfNoData()
+
+        // delegates
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
@@ -42,6 +45,35 @@ class ViewController: UIViewController {
         searchTextField.delegate = self
         
         
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refreshControl)
+        
+        
+        
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.detailseSegue {
+               let detailVC = segue.destination as! DetailsVC
+               detailVC.currentArticle = currentArticle
+           }
+       }
+    
+    @objc func refreshTableView(){
+        
+        
+    }
+    
+    
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+        searchNews(For: searchTextField.text!)
+        searchTextField.endEditing(true)
+        refreshCoreData()
+    }
+    
+    // MARK: populate tableview if there is no data
+    fileprivate func populateTableViewIfNoData() {
         if let fetchedObjects = fetchedhResultController.fetchedObjects, !fetchedObjects.isEmpty {
             print("Coredata has data")
             refreshCoreData()
@@ -51,16 +83,6 @@ class ViewController: UIViewController {
                 self.refreshCoreData()
             }
         }
-        
-//        deleteAllArticles()
-        
-    }
-    
-    
-    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-        searchNews(For: searchTextField.text!)
-        searchTextField.endEditing(true)
-        refreshCoreData()
     }
     
 
@@ -134,6 +156,13 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    // MARK: Create pull to refresh
+    func coreDataPullReq(completion: @escaping  (_ art:[Article],_ categoryName:String)->Void) {
+      
+    }
+    
+    
     // MARK: Show Alert
     func showAlertWith(title: String, message: String, style: UIAlertController.Style = .alert) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
@@ -201,20 +230,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return 0
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
         
         if !isLoading{
             let article = fetchedhResultController.object(at: indexPath) as! CDArticle
-            
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
-            cell.newsPublishedData.text = article.publishedDate?.formatted()
+            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .omitted, time: .shortened)
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
-            
             cell.newsImage.layer.cornerRadius = 8
-//            cell.layer.borderWidth = 1
             
+            
+
             return cell
         }
         return cell
@@ -224,6 +253,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        self.currentArticle = fetchedhResultController.object(at: indexPath) as? CDArticle
+        
+        performSegue(withIdentifier: Constants.detailseSegue, sender: self)
     }
     
 }
@@ -241,7 +274,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let category = Constants.categoryModelList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
-        
+
         cell.categoryImageView.image = UIImage(systemName: category.categoryIcon)
         cell.categoryLabel.text = category.categoryName
         return cell
@@ -295,7 +328,6 @@ extension ViewController: UITextFieldDelegate{
         print(textField.text!)
         searchNews(For: textField.text!)
         textField.endEditing(true)
-        
         return true
     }
     
@@ -309,11 +341,9 @@ extension ViewController: UITextFieldDelegate{
         }
     }
     
-
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if searchTextField.text != ""{
-            
             self.searchNews(For: textField.text!)
         }
         self.searchNews(For: textField.text!)
@@ -322,13 +352,11 @@ extension ViewController: UITextFieldDelegate{
     }
     
 
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-//        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField.text! != ""{
-            fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", textField.text!)
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if text != ""{
+            fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", text)
             categoryNameLabel.text = "Search Result"
         }
         refreshCoreData()

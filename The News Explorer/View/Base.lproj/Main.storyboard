@@ -213,26 +213,114 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-Se-j0x">
-                                <rect key="frame" x="0.0" y="1.6666666666666714" width="375" height="223.66666666666669"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-Se-j0x">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="226.66666666666666"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3P5-7G-eDh">
+                                <rect key="frame" x="20" y="246.66666666666666" width="335" height="86.333333333333343"/>
+                                <string key="text">News Headlines: Hindustan Times provides exclusive top stories of the day, today headlines from politics, business, technology, photos, video</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.40200836490000003" green="0.40200836490000003" blue="0.40200836490000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 13, 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-4e-zXV">
+                                <rect key="frame" x="20" y="343" width="335" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nam-ko-PP9">
+                                <rect key="frame" x="20" y="377.33333333333331" width="335" height="61.333333333333314"/>
+                                <string key="text">News Headlines: Hindustan Times provides exclusive top stories of the day, today headlines from politics, business, technology, photos, video</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSz-Il-Nnz">
+                                <rect key="frame" x="194.33333333333337" y="446.66666666666669" width="160.66666666666663" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="..continue reading"/>
+                                <connections>
+                                    <action selector="continueReading:" destination="rwX-dA-16r" eventType="touchUpInside" id="Yfg-aZ-khE"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="v3n-L8-kYJ">
+                                <rect key="frame" x="20" y="516" width="204.66666666666666" height="14.333333333333371"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGe-0K-wgy">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="14.333333333333334"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="fim-0m-Ciy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3b-Ub-OxU">
+                                        <rect key="frame" x="120" y="0.0" width="84.666666666666686" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JlI-MO-ZHt">
+                                <rect key="frame" x="20" y="538.33333333333337" width="335" height="14.333333333333371"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm8-iO-phe">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="14.333333333333334"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="I1q-uN-2qA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLh-pT-MX6">
+                                        <rect key="frame" x="120" y="0.0" width="215" height="14.333333333333334"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NoP-N5-eoG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xSz-Il-Nnz" firstAttribute="top" secondItem="nam-ko-PP9" secondAttribute="bottom" constant="8" id="1r6-Ya-R2i"/>
+                            <constraint firstItem="JlI-MO-ZHt" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="6hu-Ca-Rbm"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="width" secondItem="lBv-4h-aRL" secondAttribute="width" id="7kH-wP-Smf"/>
+                            <constraint firstItem="Jki-4e-zXV" firstAttribute="centerX" secondItem="lBv-4h-aRL" secondAttribute="centerX" id="AR6-V0-Isr"/>
+                            <constraint firstItem="Jki-4e-zXV" firstAttribute="top" secondItem="3P5-7G-eDh" secondAttribute="bottom" constant="10" id="DpD-Ky-etc"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" id="Ffg-jy-gDh"/>
+                            <constraint firstItem="JlI-MO-ZHt" firstAttribute="centerX" secondItem="lBv-4h-aRL" secondAttribute="centerX" id="HEv-B0-AXp"/>
+                            <constraint firstItem="v3n-L8-kYJ" firstAttribute="top" secondItem="xSz-Il-Nnz" secondAttribute="bottom" constant="35" id="IcJ-Ag-VEK"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="height" secondItem="lBv-4h-aRL" secondAttribute="height" multiplier="0.3" id="KMY-YP-o65"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="top" secondItem="lBv-4h-aRL" secondAttribute="top" id="Mvr-pG-mwU"/>
+                            <constraint firstItem="3P5-7G-eDh" firstAttribute="top" secondItem="TMa-Se-j0x" secondAttribute="bottom" constant="20" id="QWu-xE-jaG"/>
+                            <constraint firstItem="3P5-7G-eDh" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="iKs-Ku-CpW"/>
+                            <constraint firstItem="v3n-L8-kYJ" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="lxE-rJ-xyb"/>
+                            <constraint firstItem="Jki-4e-zXV" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="mZP-Qc-vzS"/>
+                            <constraint firstItem="3P5-7G-eDh" firstAttribute="centerX" secondItem="lBv-4h-aRL" secondAttribute="centerX" id="osW-qG-eSk"/>
+                            <constraint firstItem="nam-ko-PP9" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="pBa-ou-OXU"/>
+                            <constraint firstItem="nam-ko-PP9" firstAttribute="centerX" secondItem="lBv-4h-aRL" secondAttribute="centerX" id="r9B-vY-guf"/>
+                            <constraint firstItem="nam-ko-PP9" firstAttribute="top" secondItem="Jki-4e-zXV" secondAttribute="bottom" constant="20" id="szu-BX-7uq"/>
+                            <constraint firstItem="JlI-MO-ZHt" firstAttribute="top" secondItem="v3n-L8-kYJ" secondAttribute="bottom" constant="8" id="xef-IG-heo"/>
+                            <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="xSz-Il-Nnz" secondAttribute="trailing" constant="20" id="ytt-gh-cIa"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="author" destination="S3b-Ub-OxU" id="R63-pa-pWq"/>
+                        <outlet property="categoryName" destination="yLh-pT-MX6" id="kFv-sQ-EqL"/>
+                        <outlet property="content" destination="nam-ko-PP9" id="3kF-FT-fox"/>
+                        <outlet property="detailsVCTitle" destination="3P5-7G-eDh" id="7Vu-gf-UYm"/>
                         <outlet property="detailsViewImage" destination="TMa-Se-j0x" id="tlW-4s-aG2"/>
+                        <outlet property="publishedDate" destination="Jki-4e-zXV" id="CET-D6-oay"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3C-0z-xHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3671" y="-50"/>
+            <point key="canvasLocation" x="3669.5999999999999" y="-50.246305418719217"/>
         </scene>
         <!--Bookmark-->
         <scene sceneID="MbG-4y-now">
@@ -305,6 +393,7 @@
         <image name="bookmark.square.fill" catalog="system" width="128" height="114"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <image name="placeholder" width="275" height="183"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
