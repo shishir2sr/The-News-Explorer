@@ -24,20 +24,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     
     //MARK: ViewDidLoad method
     
     override func viewDidLoad() {
         super.viewDidLoad()
         firstLaunch()
-        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font : UIFont.systemFont(ofSize: 20),
+            .foregroundColor: UIColor.red
+          ]
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchTextField.delegate = self
     }
     
-    //MARK: First launch
+    
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+        
+        searchTextField.endEditing(true)
+        refreshCoreData()
+    }
+    
+
+//MARK: First launch
     fileprivate func firstLaunch() {
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         print(hasLaunchedBefore)
@@ -104,6 +118,12 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: Search News
+    func searchNews(For searchText: String){
+        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+           refreshCoreData()
+        }
+    
     //MARK: Create Articles
      func createArticleEntityFrom(articles: [Article], categoryName: String){
          
@@ -164,8 +184,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsPublishedData.text = article.publishedDate?.formatted()
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             
-            cell.newsImage.layer.cornerRadius = 5
-            cell.layer.borderWidth = 1
+            cell.newsImage.layer.cornerRadius = 8
+//            cell.layer.borderWidth = 1
             
             return cell
         }
@@ -229,7 +249,46 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     }
 }
 
-//MARK:- NS Fetch Request Controller delegate
+// MARK: - NS Fetch Request Controller delegate
 extension ViewController: NSFetchedResultsControllerDelegate{
+    
+}
+
+
+// MARK: - Textfield Delegate
+
+extension ViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(textField.text!)
+        searchTextField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if searchTextField.text != ""{
+            return true
+        }
+        else{
+            searchTextField.placeholder = "Write something"
+            return false
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if searchTextField.text != ""{
+            // call a method
+            self.searchNews(For: textField.text!)
+        }
+        searchTextField.text = ""
+    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+        refreshCoreData()
+        return true
+    }
     
 }
