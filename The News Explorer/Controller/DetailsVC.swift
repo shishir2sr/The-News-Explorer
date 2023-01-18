@@ -20,6 +20,7 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard let currentArticle = currentArticle else{return}
         detailsVCTitle.text = currentArticle.title
         detailsViewImage.sd_setImage(with: URL(string: currentArticle.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))

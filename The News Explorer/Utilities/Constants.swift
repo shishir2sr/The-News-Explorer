@@ -12,6 +12,7 @@ struct Constants{
     static let homeTableViewCell = "cell"
     static let detailseSegue = "detailsview"
     static let placeholderImage = "placeholder"
+    static let webkitSegue = "webkit"
     
     static let apikey = ["4396288b402d4d2f92d9e4982980678e"]
     
