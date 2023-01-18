@@ -25,6 +25,62 @@ class CoreDataManager{
         }
     }
     
+    /**
+     let articleURL = "https://example.com/article1"
+     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bookmark")
+     fetchRequest.predicate = NSPredicate(format: "url == %@", articleURL)
+
+     do {
+         let result = try context.fetch(fetchRequest)
+         if result.count > 0 {
+             // article already exists in bookmark table
+         } else {
+             // create a new bookmark object for the article
+             let bookmark = NSEntityDescription.insertNewObject(forEntityName: "Bookmark", into: context) as! Bookmark
+             bookmark.url = articleURL
+             // set other attributes
+             try context.save()
+         }
+     } catch {
+         print("Error fetching bookmark: \(error)")
+     }
+     */
+    
+    // MARK: Bookmark
+    static func addBookmark(article: CDArticle, completion: @escaping (Result<String, CustomError>) -> Void) {
+            let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookmarkedArticle")
+        fetchRequest.predicate = NSPredicate(format: "newsUrl == %@ AND sourceName == %@", article.newsUrl!, article.seourceName!)
+        
+        do{
+            let result = try context.fetch(fetchRequest)
+            if result.count > 0 {
+                // article already exists in bookmark table
+                print("Article already exist in the bookmark table")
+                completion(.failure(.bookmarkExist))
+            } else {
+                // create a new bookmark object for the article
+                let bookmark = BookmarkedArticle(context: context)
+                bookmark.sourceName = article.seourceName
+                bookmark.author = article.author
+                bookmark.title = article.title
+                bookmark.descriptionText = article.descriptionText
+                bookmark.newsUrl = article.newsUrl
+                bookmark.publishedDate = article.publishedDate
+                bookmark.content = article.content
+                bookmark.imageUrl = article.imageUrl
+                bookmark.category = article.category?.categoryName
+                try context.save()
+                completion(.success("Item added to bookmark list"))
+            }
+        }catch{
+            print(error)
+            completion(.failure(.bookmarkFailed))
+        }
+        
+    }
+    
     
     // MARK: Clear articles
 //    static func clearArticles(categoryName: String) {
@@ -51,7 +107,7 @@ class CoreDataManager{
             try context.execute(batchDeleteRequest)
             try context.save()
         } catch let error as NSError {
-            // handle error
+            print(error.localizedDescription)
         }
     }
     
