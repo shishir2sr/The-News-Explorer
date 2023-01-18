@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-        
+        searchNews(For: searchTextField.text!)
         searchTextField.endEditing(true)
         refreshCoreData()
     }
@@ -293,7 +293,9 @@ extension ViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(textField.text!)
+        searchNews(For: textField.text!)
         textField.endEditing(true)
+        
         return true
     }
     
@@ -303,16 +305,18 @@ extension ViewController: UITextFieldDelegate{
         }
         else{
             textField.placeholder = "Write something"
-            refreshCoreData()
             return false
         }
     }
     
+
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if searchTextField.text != ""{
-            // call a method
+            
             self.searchNews(For: textField.text!)
         }
+        self.searchNews(For: textField.text!)
         searchTextField.text = ""
         
     }
@@ -325,8 +329,10 @@ extension ViewController: UITextFieldDelegate{
         
         if textField.text! != ""{
             fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", textField.text!)
+            categoryNameLabel.text = "Search Result"
         }
         refreshCoreData()
+        categoryNameLabel.text = "Search Result"
         return true
     }
     
