@@ -40,6 +40,9 @@ class CoreDataManager{
         }
     }
     
+    
+    
+    
     //MARK: create Article
     static func createArticleEntityFrom(articles: [Article], categoryName: String){
         

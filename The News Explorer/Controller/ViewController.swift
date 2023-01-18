@@ -8,7 +8,6 @@ class ViewController: UIViewController {
     var  articles: [Article] = []
     var isLoading = false
     
-    
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
         
@@ -27,20 +26,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     
-    //MARK: ViewDidLoad method
+    @IBOutlet weak var categoryNameLabel: UILabel!
     
+    
+    //MARK: ViewDidLoad method
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         firstLaunch()
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font : UIFont.systemFont(ofSize: 20),
-            .foregroundColor: UIColor.red
-          ]
+        
         tableView.delegate = self
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
         searchTextField.delegate = self
+        
+        
+        if let fetchedObjects = fetchedhResultController.fetchedObjects, !fetchedObjects.isEmpty {
+            print("Coredata has data")
+            refreshCoreData()
+        } else {
+            print("Coredata empty")
+            coreDataInit {
+                self.refreshCoreData()
+            }
+        }
+        
+//        deleteAllArticles()
+        
     }
     
     
@@ -58,15 +71,28 @@ class ViewController: UIViewController {
         
         if !hasLaunchedBefore {
             CoreDataManager.addCategories()
-            coreDataInit(){
-                self.refreshCoreData()
-            }
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
             
         } else{
             refreshCoreData()
         }
     }
+    
+    
+    // MARK: Delete articles
+    func deleteAllArticles() {
+        do {
+            try fetchedhResultController.performFetch()
+            let articlesToDelete = fetchedhResultController.fetchedObjects as! [CDArticle]
+            for article in articlesToDelete {
+                CoreDataStack.sharedInstance.persistentContainer.viewContext.delete(article)
+            }
+            CoreDataStack.sharedInstance.saveContext()
+        } catch {
+            print("Error deleting articles: \(error)")
+        }
+    }
+
     
     
     // MARK: Refresh coredata
@@ -76,6 +102,7 @@ class ViewController: UIViewController {
             try self.fetchedhResultController.performFetch()
         } catch {
             print("Error fetching data: \(error)")
+            showAlertWith(title: "Coredata Error!", message: error.localizedDescription)
         }
         self.tableView.reloadData()
     }
@@ -117,6 +144,7 @@ class ViewController: UIViewController {
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
+    
     
     // MARK: Search News
     func searchNews(For searchText: String){
@@ -223,6 +251,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCVCell, for: indexPath) as! CategoryCollectionVC
+        
+        let category = Constants.categoryModelList[indexPath.row]
+                categoryNameLabel.text = category.categoryName
+        
         print(indexPath.row)
         selectItemFromCategories(indexPath)
     }
@@ -261,7 +293,7 @@ extension ViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(textField.text!)
-        searchTextField.endEditing(true)
+        textField.endEditing(true)
         return true
     }
     
@@ -270,7 +302,8 @@ extension ViewController: UITextFieldDelegate{
             return true
         }
         else{
-            searchTextField.placeholder = "Write something"
+            textField.placeholder = "Write something"
+            refreshCoreData()
             return false
         }
     }
@@ -281,12 +314,18 @@ extension ViewController: UITextFieldDelegate{
             self.searchNews(For: textField.text!)
         }
         searchTextField.text = ""
+        
     }
     
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+        
+//        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if textField.text! != ""{
+            fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[c] %@", textField.text!)
+        }
         refreshCoreData()
         return true
     }

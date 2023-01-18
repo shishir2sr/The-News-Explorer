@@ -72,7 +72,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uS0-oM-c4X">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Headlines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uS0-oM-c4X">
                                 <rect key="frame" x="10" y="135" width="355" height="30.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="25"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -193,6 +193,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="categoryNameLabel" destination="uS0-oM-c4X" id="kpe-yc-Xik"/>
                         <outlet property="collectionView" destination="mdQ-xp-6I0" id="TSu-B3-a1Y"/>
                         <outlet property="searchButton" destination="3z5-6C-isz" id="u7q-uk-uhK"/>
                         <outlet property="searchTextField" destination="z1a-rH-Bf5" id="qfe-1C-qUz"/>
