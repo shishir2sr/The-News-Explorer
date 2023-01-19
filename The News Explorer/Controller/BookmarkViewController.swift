@@ -40,6 +40,9 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        searchField.delegate = self
+        
+        
         refreshCoreData()
         
     }
@@ -54,6 +57,30 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
       }
     
     
+    
+    
+    
+    // MARK: Show Alert
+    func showAlertWith(title: String, message: String, style: UIAlertController.Style = .alert) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        
+        let action = UIAlertAction(title: "ok", style: .default) {[weak self] (action) in
+            guard let self = self else{return}
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    
+    
+    func searchNews(For searchText: String){
+        fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+           refreshCoreData()
+        }
+    
+    
+    // MARK: categorywise sorting
     fileprivate func selectItemFromCategories(_ indexPath: IndexPath) {
        
         do{
@@ -78,6 +105,8 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
     }
 }
 
+
+// MARK: - Tableview delegate and data source
 extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = fetchedhResultController.sections?.first?.numberOfObjects {
@@ -116,6 +145,7 @@ extension BookmarkedArticle: NSFetchedResultsControllerDelegate{
 }
 
 
+// MARK: - Collectionview delegate and datasource
 extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Constants.categoryList.count
@@ -134,6 +164,54 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
         selectItemFromCategories(indexPath)
         tableView.reloadData()
         
+    }
+    
+}
+
+
+// MARK: - Textfield Delegate
+
+extension BookmarkViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(textField.text!)
+        searchNews(For: searchField.text!)
+        textField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if searchField.text != ""{
+            return true
+        }
+        else{
+            textField.placeholder = "Write something"
+            return false
+        }
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if searchField.text != ""{
+            self.searchNews(For: textField.text!)
+        }
+        self.searchNews(For: textField.text!)
+        searchField.text = ""
+        
+    }
+    
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if text != ""{
+            searchNews(For: text)
+            categoryName.text = "Search Result"
+        }
+        refreshCoreData()
+        categoryName.text = "Search Result"
+        return true
     }
     
 }
