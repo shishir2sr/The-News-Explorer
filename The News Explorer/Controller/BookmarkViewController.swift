@@ -26,11 +26,19 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         return frc
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshCoreData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         refreshCoreData()
         
     }
@@ -89,5 +97,20 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource{
 
 
 extension BookmarkedArticle: NSFetchedResultsControllerDelegate{
+    
+}
+
+
+extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Constants.categoryList.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.bookmarkCVCell, for: indexPath) as! BookmarkCollectionViewCell
+        cell.categoryLabel.text = Constants.categoryList[indexPath.row]
+        return cell
+        
+    }
     
 }
