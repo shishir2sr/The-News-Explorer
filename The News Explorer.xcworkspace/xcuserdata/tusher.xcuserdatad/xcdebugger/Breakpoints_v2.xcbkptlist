@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5798E80B-0260-4C46-A878-CE0279BE9DFA"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9CB889B-D115-48A2-A3DB-49D4B08DA10D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "refreshPull(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "975157D4-38DB-46BC-9B78-6901AB5A7374"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "refreshPull(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "975157D4-38DB-46BC-9B78-6901AB5A7374 - 24a809618b182821"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "The_News_Explorer.ViewController.refreshPull(sender: __C.UIRefreshControl) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "975157D4-38DB-46BC-9B78-6901AB5A7374 - b8a6a9b80ad6f6d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in The_News_Explorer.ViewController.refreshPull(sender: __C.UIRefreshControl) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -48,7 +48,7 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         
         searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         
-        refreshCoreData()
+     
         
     }
     
