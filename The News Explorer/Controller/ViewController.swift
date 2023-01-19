@@ -301,11 +301,43 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             cell.newsPublishedData.text = article.publishedDate?.formatted(date: .abbreviated, time: .shortened)
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             cell.newsImage.layer.cornerRadius = 8
+            
+            
+            if isIsBookmarked(article: article){
+                cell.bookmarkImage.image =  UIImage(systemName: "bookmark.fill")
+                
+                
+            }else{
+                cell.bookmarkImage.image = UIImage(systemName: "bookmark")
+                
+            }
+            
+            cell.selectionStyle = .none
             return cell
         }
         return cell
+        
     }
     
+    
+    func isIsBookmarked(article: CDArticle)-> Bool{
+        let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookmarkedArticle")
+        fetchRequest.predicate = NSPredicate(format: "newsUrl == %@ AND sourceName == %@", article.newsUrl!, article.seourceName!)
+        
+        do{
+            let result = try context.fetch(fetchRequest)
+            if result.count > 0{
+                return true
+                
+            }else{
+               return false
+            }
+            
+        }catch{
+            return false
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
