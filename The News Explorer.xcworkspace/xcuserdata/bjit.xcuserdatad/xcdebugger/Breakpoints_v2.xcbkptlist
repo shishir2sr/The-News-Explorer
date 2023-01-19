@@ -14,10 +14,10 @@
             filePath = "The News Explorer/Utilities/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "CoreDataManager"
-            landmarkType = "3">
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "clearArticles(categoryName:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,10 +30,10 @@
             filePath = "The News Explorer/Utilities/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "CoreDataManager"
-            landmarkType = "3">
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "clearArticles(categoryName:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,8 +46,8 @@
             filePath = "The News Explorer/Utilities/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "addBookmark(article:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,42 +62,10 @@
             filePath = "The News Explorer/Utilities/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "addBookmark(article:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A49CD1A5-66B6-430B-96CF-0486CF205437 - b4ea5f8a740be4ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static The_News_Explorer.CoreDataManager.addBookmark(article: The_News_Explorer.CDArticle, completion: (Swift.Result&lt;Swift.String, The_News_Explorer.CustomError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "The News Explorer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "6076">
-               </Location>
-               <Location
-                  uuid = "A49CD1A5-66B6-430B-96CF-0486CF205437 - b4ea5f8a740be4ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static The_News_Explorer.CoreDataManager.addBookmark(article: The_News_Explorer.CDArticle, completion: (Swift.Result&lt;Swift.String, The_News_Explorer.CustomError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "The News Explorer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "6468">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -140,8 +108,8 @@
             filePath = "The News Explorer/Controller/BookmarkViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -156,10 +124,90 @@
             filePath = "The News Explorer/Controller/BookmarkViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "763FBAE5-1A6A-417C-9920-A116C41DA132"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Utilities/CoreDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "createArticleEntityFrom(articles:categoryName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AE6E4669-075B-41FF-A738-E0719DF58533"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Utilities/CoreDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "createArticleEntityFrom(articles:categoryName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDDFED95-7F97-4296-8309-FEB560E88E7D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Utilities/CoreDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "createArticleEntityFrom(articles:categoryName:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FDDFED95-7F97-4296-8309-FEB560E88E7D - 1bc077fbffdb4285"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static The_News_Explorer.CoreDataManager.createArticleEntityFrom(articles: Swift.Array&lt;The_News_Explorer.Article&gt;, categoryName: Swift.String) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "2836">
+               </Location>
+               <Location
+                  uuid = "FDDFED95-7F97-4296-8309-FEB560E88E7D - 1bc077fbffdb4285"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static The_News_Explorer.CoreDataManager.createArticleEntityFrom(articles: Swift.Array&lt;The_News_Explorer.Article&gt;, categoryName: Swift.String) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "2876">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

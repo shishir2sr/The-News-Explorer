@@ -25,26 +25,27 @@ class CoreDataManager{
         }
     }
     
-    /**
-     let articleURL = "https://example.com/article1"
-     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bookmark")
-     fetchRequest.predicate = NSPredicate(format: "url == %@", articleURL)
-
-     do {
-         let result = try context.fetch(fetchRequest)
-         if result.count > 0 {
-             // article already exists in bookmark table
-         } else {
-             // create a new bookmark object for the article
-             let bookmark = NSEntityDescription.insertNewObject(forEntityName: "Bookmark", into: context) as! Bookmark
-             bookmark.url = articleURL
-             // set other attributes
-             try context.save()
-         }
-     } catch {
-         print("Error fetching bookmark: \(error)")
-     }
-     */
+    
+    static func pulltoRefresh(category: String){
+        NetworkManager.shared.getNews(for: category){ result in
+            switch result{
+                
+            case .success(let data):
+                if data.count > 0{
+                    DispatchQueue.main.async {
+                        clearArticles(categoryName: category)
+                    }
+                    
+                }
+                
+            case .failure(_):
+                print("error in pullto refresh")
+            }
+            
+        }
+        
+    }
+    
     
     // MARK: Bookmark
     static func addBookmark(article: CDArticle, completion: @escaping (Result<String, CustomError>) -> Void) {
@@ -82,35 +83,36 @@ class CoreDataManager{
     }
     
     
-    // MARK: Clear articles
-//    static func clearArticles(categoryName: String) {
-//        
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
-//        fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)
-//        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//        
-//        do {
-//            try context.execute(batchDeleteRequest)
-//            try context.save()
-//            print("Articles deleted")
-//        } catch let error as NSError {
-//            print("Error: \(error)")
-//        }
-//    }
-//    
-    
-    static func deleteAllArticles() {
+//     MARK: Clear articles
+    static func clearArticles(categoryName: String) {
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
+        fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
         do {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             try context.execute(batchDeleteRequest)
             try context.save()
+            print("Articles deleted")
         } catch let error as NSError {
-            print(error.localizedDescription)
+            print("Error: \(error)")
         }
     }
+//    
     
+//    static func deleteAllArticles() {
+//        let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+//        do {
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
+//            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//            try context.execute(batchDeleteRequest)
+//            try context.save()
+//        } catch let error as NSError {
+//            print(error.localizedDescription)
+//        }
+//    }
+//
     
     
     //MARK: create Article

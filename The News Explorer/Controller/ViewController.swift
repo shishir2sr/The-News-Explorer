@@ -63,7 +63,9 @@ class ViewController: UIViewController {
        }
     
     @objc func refreshPull(sender: UIRefreshControl) {
+        CoreDataManager.clearArticles(categoryName: "Business")
         
+        refreshCoreData()
         sender.endRefreshing()
     }
     
