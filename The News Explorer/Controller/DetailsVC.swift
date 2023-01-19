@@ -21,13 +21,7 @@ class DetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let currentArticle = currentArticle else{return}
-//        detailsVCTitle.text = currentArticle.title
-//        detailsViewImage.sd_setImage(with: URL(string: currentArticle.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))
-//        publishedDate.text = currentArticle.publishedDate?.formatted(date: .abbreviated, time: .shortened)
-//        content.text = currentArticle.content
-//        author.text = currentArticle.author
-//        if currentArticle.isEqual(to: <#T##NSTextRange#>)
-//        categoryName.text = currentArticle.category?.categoryName
+
         
         if currentArticle is CDArticle {
                    let article = currentArticle as! CDArticle

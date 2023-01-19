@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "publishedDate", ascending: true)]
         fetchRequest.fetchBatchSize = 10
@@ -21,6 +20,7 @@ class ViewController: UIViewController {
         frc.delegate = self
         return frc
     }()
+    
     
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,19 +30,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     
-    //MARK: ViewDidLoad method
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - ViewWillApear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        // First launch
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
         if !hasLaunchedBefore {
-            CoreDataManager.addCategories()
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            UserDefaults.standard.set(Date(), forKey: "lastFetchTime")
+            CoreDataManager.addCategories()
+            sleep(1)
+            coreDataInit(){
+                DispatchQueue.main.async {
+                    self.refreshCoreData()
+                }
+            }
+            
         } else{
             refreshCoreData()
         }
         
-        populateTableViewIfNoData()
+      
+        let lastFetchTime = UserDefaults.standard.object(forKey: "lastFetchTime") as? Date
+        if let lastFetchTime = lastFetchTime{
+            if  Date().timeIntervalSince(lastFetchTime) > 3600{
+                deleteAllArticles(){
+                    sleep(1)
+                    coreDataInit(){
+                        DispatchQueue.main.async {
+                            self.refreshCoreData()
+                        }
+                    }
+                }
+                UserDefaults.standard.set(Date(), forKey: "lastFetchTime")
+            }
+        }else{
+            print(" Last Fetch Time: \(Date().timeIntervalSince(lastFetchTime ?? Date()))")
+        }
+
+       
+    }
+    
+    
+    //MARK: ViewDidLoad method
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        
+//        populateTableViewIfNoData()
 
         // delegates
         tableView.delegate = self
@@ -62,7 +99,6 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         
-       
 
     }
     
@@ -73,8 +109,9 @@ class ViewController: UIViewController {
            }
        }
     
+    
+    // MARK: - Pull to refresh
     @objc func refreshPull(sender: UIRefreshControl) {
-
         deleteAllArticles(){
             coreDataInit(){
                 DispatchQueue.main.async {
@@ -82,6 +119,8 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+       
        
         
         sender.endRefreshing()
@@ -125,12 +164,14 @@ class ViewController: UIViewController {
                 CoreDataStack.sharedInstance.persistentContainer.viewContext.delete(article)
             }
             CoreDataStack.sharedInstance.saveContext()
-            
+            print("articles deleted")
             completion()
         } catch {
             print("Error deleting articles: \(error)")
         }
     }
+    
+    
 
     
     

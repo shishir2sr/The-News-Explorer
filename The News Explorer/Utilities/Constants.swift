@@ -15,7 +15,11 @@ struct Constants{
     static let webkitSegue = "webkit"
     static let segueBookmarkToDtails = "bookmartToDetails"
     static let bookmarkCVCell = "bcategorycollectionviewcell"
-    static let apikey = ["4396288b402d4d2f92d9e4982980678e"]
+    
+    static let apikey = ["4396288b402d4d2f92d9e4982980678e",
+                         "e7f8e02bc02d4ef2a0c3e53a09c9e3b5",
+                        "e002407d8d544c5bafa878ce1367aec3",
+                         "861dc77bcf9a48b1b92ca4197c11c7f3"]
     
     
     static let categoryModelList: [CategoryModel] = [
@@ -28,24 +32,9 @@ struct Constants{
         CategoryModel(categoryName: "Sports", categoryIcon: "figure.basketball"),
         CategoryModel(categoryName: "Technology", categoryIcon: "antenna.radiowaves.left.and.right")
         
-        /**
-         Health: "heart" or "person.crop.circle"
-         Science: "flask" or "book.closed"
-         Sports: "basketball" or "person.running"
-         Technology: "computer" or "antenna.radiowaves.left.and.right"
-
-         */
+        
     ]
     
     
 }
-/**
- Business: "briefcase"
- Entertainment: "film" or "tv"
- General: "globe" or "newspaper"
- Health: "heart" or "person.crop.circle"
- Science: "flask" or "book.closed"
- Sports: "basketball" or "person.running"
- Technology: "computer" or "antenna.radiowaves.left.and.right"
 
- */
