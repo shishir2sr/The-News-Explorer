@@ -44,6 +44,12 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         searchTextField.delegate = self
 
+       searchTextField.layer.cornerRadius = 8
+        searchTextField.layer.borderWidth = 0.3
+        searchTextField.layer.borderColor = UIColor.gray.cgColor
+        
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
         refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
 
@@ -119,7 +125,9 @@ class ViewController: UIViewController {
             try self.fetchedhResultController.performFetch()
         } catch {
             print("Error fetching data: \(error)")
+            
             showAlertWith(title: "Coredata Error!", message: error.localizedDescription)
+  
         }
         self.tableView.reloadData()
     }
@@ -141,9 +149,11 @@ class ViewController: UIViewController {
                             completion()
                             
                         case .failure(let error):
-                            self.showAlertWith(title: "Erro!", message: error.localizedDescription)
+                            DispatchQueue.main.async {
+                                self.showAlertWith(title: "Erro!", message: error.localizedDescription)
+                            }
+                            
                         }
-                        
                     }
                 }
                 
@@ -154,7 +164,6 @@ class ViewController: UIViewController {
     
     // MARK: Create pull to refresh
     func coreDataPullReq(completion: @escaping  (_ art:[Article],_ categoryName:String)->Void) {
-      
     }
     
     
@@ -234,12 +243,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             let article = fetchedhResultController.object(at: indexPath) as! CDArticle
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
-            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .omitted, time: .shortened)
+            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .abbreviated, time: .shortened)
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             cell.newsImage.layer.cornerRadius = 8
-            
-            
-
             return cell
         }
         return cell

@@ -16,22 +16,37 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var categoryName: UILabel!
     
-    var currentArticle: CDArticle!
+    var currentArticle: AnyObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // visible navigation bar
-        navigationController?.isNavigationBarHidden = false
-        // visible back button
-        navigationItem.hidesBackButton = false
         guard let currentArticle = currentArticle else{return}
-        detailsVCTitle.text = currentArticle.title
-        detailsViewImage.sd_setImage(with: URL(string: currentArticle.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))
-        publishedDate.text = currentArticle.publishedDate?.formatted(date: .abbreviated, time: .shortened)
-        content.text = currentArticle.content
-        author.text = currentArticle.author
-        categoryName.text = currentArticle.category?.categoryName
+//        detailsVCTitle.text = currentArticle.title
+//        detailsViewImage.sd_setImage(with: URL(string: currentArticle.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))
+//        publishedDate.text = currentArticle.publishedDate?.formatted(date: .abbreviated, time: .shortened)
+//        content.text = currentArticle.content
+//        author.text = currentArticle.author
+//        if currentArticle.isEqual(to: <#T##NSTextRange#>)
+//        categoryName.text = currentArticle.category?.categoryName
+        
+        if currentArticle is CDArticle {
+                   let article = currentArticle as! CDArticle
+                   detailsVCTitle.text = article.title
+                   detailsViewImage.sd_setImage(with: URL(string: article.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))
+                   publishedDate.text = article.publishedDate?.formatted(date: .abbreviated, time: .shortened)
+                   content.text = article.content
+                   author.text = article.author
+                   categoryName.text = article.category?.categoryName
+            
+               }else if currentArticle is BookmarkedArticle {
+                   let article = currentArticle as! BookmarkedArticle
+                   detailsVCTitle.text = article.title
+                   detailsViewImage.sd_setImage(with: URL(string: article.imageUrl ?? ""), placeholderImage: UIImage(named: Constants.placeholderImage))
+                   publishedDate.text = article.publishedDate?.formatted(date: .abbreviated, time: .shortened)
+                   content.text = article.content
+                   author.text = article.author
+                   categoryName.text = article.category
+               }
         
     }
     
