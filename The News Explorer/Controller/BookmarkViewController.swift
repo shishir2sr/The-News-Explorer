@@ -26,6 +26,7 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         return frc
     }()
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshCoreData()
@@ -51,6 +52,20 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
               
           }
       }
+    
+    
+    fileprivate func selectItemFromCategories(_ indexPath: IndexPath) {
+       
+        do{
+            let categoryName = Constants.categoryList[indexPath.row]
+            fetchedhResultController.fetchRequest.predicate = NSPredicate(format: "category == %@", categoryName)
+            try fetchedhResultController.performFetch()
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        tableView.reloadData()
+    }
     
     
     fileprivate func refreshCoreData() {
@@ -110,6 +125,14 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.bookmarkCVCell, for: indexPath) as! BookmarkCollectionViewCell
         cell.categoryLabel.text = Constants.categoryList[indexPath.row]
         return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = Constants.categoryList
+        categoryName.text = category[indexPath.row]
+        selectItemFromCategories(indexPath)
+        tableView.reloadData()
         
     }
     
