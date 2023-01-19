@@ -44,6 +44,12 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         searchTextField.delegate = self
 
+       searchTextField.layer.cornerRadius = 8
+        searchTextField.layer.borderWidth = 0.3
+        searchTextField.layer.borderColor = UIColor.gray.cgColor
+        
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        
         refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
 
