@@ -39,9 +39,7 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         tableView.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         searchField.delegate = self
-        
         searchField.layer.cornerRadius = 8
         searchField.layer.borderWidth = 0.3
         searchField.layer.borderColor = UIColor.gray.cgColor
@@ -55,9 +53,8 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.identifier == Constants.segueBookmarkToDtails {
               let destinationVC = segue.destination as! DetailsVC
-
-                  destinationVC.currentArticle = selectedBookmarkArticle
               
+                  destinationVC.currentArticle = selectedBookmarkArticle
           }
       }
     
