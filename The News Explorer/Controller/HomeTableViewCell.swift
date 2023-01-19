@@ -20,6 +20,8 @@ class HomeTableViewCell: UITableViewCell {
         
     }
 
+    @IBOutlet weak var bookmarkImage: UIImageView!
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
