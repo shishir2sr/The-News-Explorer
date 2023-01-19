@@ -82,13 +82,13 @@ class CoreDataManager{
     }
     
     
-    // MARK: Clear articles
-//    static func clearArticles(categoryName: String) {
-//        
+////     MARK: Clear articles
+//    static func clearArticles(completion: ()->Void) {
+//
 //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
-//        fetchRequest.predicate = NSPredicate(format: "category.categoryName == %@", categoryName)
+//
 //        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//        
+//
 //        do {
 //            try context.execute(batchDeleteRequest)
 //            try context.save()
@@ -97,15 +97,17 @@ class CoreDataManager{
 //            print("Error: \(error)")
 //        }
 //    }
-//    
     
-    static func deleteAllArticles() {
+    
+    static func deleteAllArticles(completion: ()->Void) {
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
         do {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDArticle")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             try context.execute(batchDeleteRequest)
             try context.save()
+            print("COREDATA DELETED")
+            completion()
         } catch let error as NSError {
             print(error.localizedDescription)
         }

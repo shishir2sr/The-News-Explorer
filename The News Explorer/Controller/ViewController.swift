@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     
     // MARK: FetchedResultController
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: CDArticle.self))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "publishedDate", ascending: true)]
         fetchRequest.fetchBatchSize = 10
@@ -21,6 +20,7 @@ class ViewController: UIViewController {
         frc.delegate = self
         return frc
     }()
+    
     
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,12 +30,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     
+    // MARK: - ViewWillApear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // First launch
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        if !hasLaunchedBefore {
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            UserDefaults.standard.set(Date(), forKey: "lastFetchTime")
+            CoreDataManager.addCategories()
+            sleep(1)
+            coreDataInit(){
+                DispatchQueue.main.async {
+                    self.refreshCoreData()
+                }
+            }
+            
+        } else{
+            refreshCoreData()
+        }
+        
+      
+        let lastFetchTime = UserDefaults.standard.object(forKey: "lastFetchTime") as? Date
+        if let lastFetchTime = lastFetchTime{
+            if  Date().timeIntervalSince(lastFetchTime) > 3600{
+                deleteAllArticles(){
+                    sleep(1)
+                    coreDataInit(){
+                        DispatchQueue.main.async {
+                            self.refreshCoreData()
+                        }
+                    }
+                }
+                UserDefaults.standard.set(Date(), forKey: "lastFetchTime")
+            }
+        }else{
+            print(" Last Fetch Time: \(Date().timeIntervalSince(lastFetchTime ?? Date()))")
+        }
+
+       
+    }
+    
+    
     //MARK: ViewDidLoad method
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstLaunch()
-        populateTableViewIfNoData()
+        
+        
+//        populateTableViewIfNoData()
 
         // delegates
         tableView.delegate = self
@@ -43,6 +87,8 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         searchTextField.delegate = self
+        
+       
 
        searchTextField.layer.cornerRadius = 8
         searchTextField.layer.borderWidth = 0.3
@@ -52,6 +98,7 @@ class ViewController: UIViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshPull), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
+        
 
     }
     
@@ -62,7 +109,19 @@ class ViewController: UIViewController {
            }
        }
     
+    
+    // MARK: - Pull to refresh
     @objc func refreshPull(sender: UIRefreshControl) {
+        deleteAllArticles(){
+            coreDataInit(){
+                DispatchQueue.main.async {
+                    self.refreshCoreData()
+                }
+            }
+        }
+        
+       
+       
         
         sender.endRefreshing()
     }
@@ -81,7 +140,10 @@ class ViewController: UIViewController {
         } else {
             print("Coredata empty")
             coreDataInit {
-                self.refreshCoreData()
+                DispatchQueue.main.async {
+                    self.refreshCoreData()
+                }
+                
             }
         }
     }
@@ -89,21 +151,12 @@ class ViewController: UIViewController {
 
 //MARK: First launch
     fileprivate func firstLaunch() {
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
-        print(hasLaunchedBefore)
         
-        if !hasLaunchedBefore {
-            CoreDataManager.addCategories()
-            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-            
-        } else{
-            refreshCoreData()
-        }
     }
     
     
     // MARK: Delete articles
-    func deleteAllArticles() {
+    func deleteAllArticles(completion: ()->Void) {
         do {
             try fetchedhResultController.performFetch()
             let articlesToDelete = fetchedhResultController.fetchedObjects as! [CDArticle]
@@ -111,10 +164,14 @@ class ViewController: UIViewController {
                 CoreDataStack.sharedInstance.persistentContainer.viewContext.delete(article)
             }
             CoreDataStack.sharedInstance.saveContext()
+            print("articles deleted")
+            completion()
         } catch {
             print("Error deleting articles: \(error)")
         }
     }
+    
+    
 
     
     
@@ -141,7 +198,7 @@ class ViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             
             for ct in Constants.categoryList{
-                DispatchQueue.global().async {
+//                DispatchQueue.global().async {
                     NetworkManager.shared.getNews(for: ct) { result in
                         switch result {
                         case .success(let articles):
@@ -155,16 +212,14 @@ class ViewController: UIViewController {
                             
                         }
                     }
-                }
+//                }
                 
             }
         }
     }
     
     
-    // MARK: Create pull to refresh
-    func coreDataPullReq(completion: @escaping  (_ art:[Article],_ categoryName:String)->Void) {
-    }
+    
     
     
     // MARK: Show Alert

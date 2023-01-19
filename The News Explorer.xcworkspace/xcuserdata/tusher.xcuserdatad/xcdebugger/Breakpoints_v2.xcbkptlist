@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "52118FC6-F814-438F-81BD-E57B6F514E34"
-   type = "1"
+   uuid = "5798E80B-0260-4C46-A878-CE0279BE9DFA"
+   type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39B04495-8C3C-483B-B9CF-1D3F1381AFA3"
-            shouldBeEnabled = "No"
+            uuid = "B9CB889B-D115-48A2-A3DB-49D4B08DA10D"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The News Explorer/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "refreshPull(sender:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "39B04495-8C3C-483B-B9CF-1D3F1381AFA3 - eb6172006b0e8db"
+                  uuid = "B9CB889B-D115-48A2-A3DB-49D4B08DA10D - 24a809618b182dec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "The_News_Explorer.ViewController.coreDataInit(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "The_News_Explorer.ViewController.refreshPull(sender: __C.UIRefreshControl) -&gt; ()"
                   moduleName = "The News Explorer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "272">
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "60">
                </Location>
                <Location
-                  uuid = "39B04495-8C3C-483B-B9CF-1D3F1381AFA3 - 74f262fff6cafe15"
+                  uuid = "B9CB889B-D115-48A2-A3DB-49D4B08DA10D - b8a6a9b80ad6f2bc"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in The_News_Explorer.ViewController.coreDataInit(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in The_News_Explorer.ViewController.refreshPull(sender: __C.UIRefreshControl) -&gt; ()"
                   moduleName = "The News Explorer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "244">
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,15 +55,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B26D536-00F3-4B31-9726-BD49A5B5A2BA"
-            shouldBeEnabled = "No"
+            uuid = "975157D4-38DB-46BC-9B78-6901AB5A7374"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The News Explorer/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "refreshPull(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -71,47 +71,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A2E699AE-34FF-4B38-BCC1-08ABFBEC9188"
-            shouldBeEnabled = "No"
+            uuid = "952B9E90-4A7A-4A3A-9172-5C481CD7051B"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The News Explorer/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "populateTableViewIfNoData()"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4E87083-3A3C-4078-AD8A-D8198F555F31"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E2B3686-22B3-449B-B030-B4A0541613FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "914E1849-25EC-4BA5-89A7-A5EB34254982"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90B4B9E9-5A0C-4D1D-92DB-FDD33671854C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "186113A6-8879-4E24-BB63-B6C29ADC134A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "The News Explorer/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "searchButtonTapped(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A2E699AE-34FF-4B38-BCC1-08ABFBEC9188 - 675c142d52f39728"
+                  uuid = "186113A6-8879-4E24-BB63-B6C29ADC134A - a1463b5144ef316b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in The_News_Explorer.ViewController.coreDataInit(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "The_News_Explorer.ViewController.populateTableViewIfNoData() -&gt; ()"
                   moduleName = "The News Explorer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "68">
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
-                  uuid = "A2E699AE-34FF-4B38-BCC1-08ABFBEC9188 - 41c60409a4cdcc94"
+                  uuid = "186113A6-8879-4E24-BB63-B6C29ADC134A - a1463b5144ef316b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;The_News_Explorer.Article&gt;, The_News_Explorer.CustomError&gt;) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; () in The_News_Explorer.ViewController.coreDataInit(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "The_News_Explorer.ViewController.populateTableViewIfNoData() -&gt; ()"
                   moduleName = "The News Explorer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tusher/Projects/BJIT/Mid%20Term/The-News-Explorer/The%20News%20Explorer/Controller/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "132">
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "144">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -119,113 +199,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "273C57AE-4637-4889-BDB3-C400597D1ACE"
-            shouldBeEnabled = "No"
+            uuid = "28DB9FF0-2BA0-4753-AA60-32566BF31D1E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The News Explorer/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "populateTableViewIfNoData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B4BB68DC-53D9-4B97-B2BE-BF1B6291FD6D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "populateTableViewIfNoData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B960A935-3C97-47A9-875D-68A8A4D5998F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "refreshCoreData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28803C3B-FC2F-4CC7-A4F8-E37B92DEDCCD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "ViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B6D4BF0C-BE15-4DAB-9245-B90E459B1DB3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "populateTableViewIfNoData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DFCA9455-F88B-4974-A46F-514D5DC0C42C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F2102FFF-B011-4304-8016-595F0BB40A08"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "The News Explorer/Controller/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
