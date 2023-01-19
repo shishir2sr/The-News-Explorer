@@ -42,7 +42,9 @@ class BookmarkViewController: UIViewController, NSFetchedResultsControllerDelega
         
         searchField.delegate = self
         
-        
+        searchField.layer.cornerRadius = 8
+        searchField.layer.borderWidth = 0.5
+        searchField.layer.borderColor = UIColor.darkGray.cgColor
         refreshCoreData()
         
     }
@@ -163,6 +165,9 @@ extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.bookmarkCVCell, for: indexPath) as! BookmarkCollectionViewCell
         cell.categoryLabel.text = Constants.categoryList[indexPath.row]
+        cell.layer.borderWidth = 0.5
+        cell.layer.borderColor = UIColor.darkGray.cgColor
+        cell.layer.cornerRadius = 8
         return cell
         
     }
