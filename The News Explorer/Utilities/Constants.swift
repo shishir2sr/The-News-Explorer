@@ -13,8 +13,10 @@ struct Constants{
     static let detailseSegue = "detailsview"
     static let placeholderImage = "placeholder"
     static let webkitSegue = "webkit"
+    static let segueBookmarkToDtails = "bookmartToDetails"
     static let bookmarkCVCell = "bcategorycollectionviewcell"
     static let apikey = ["4396288b402d4d2f92d9e4982980678e"]
+    
     
     static let categoryModelList: [CategoryModel] = [
         CategoryModel(categoryName: "All", categoryIcon: "globe.asia.australia.fill"),

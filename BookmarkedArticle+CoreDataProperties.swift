@@ -1,8 +1,8 @@
 //
 //  BookmarkedArticle+CoreDataProperties.swift
-//  
+//  The News Explorer
 //
-//  Created by Yeasir Arefin Tusher on 18/1/23.
+//  Created by bjit on 19/1/23.
 //
 //
 
@@ -17,6 +17,7 @@ extension BookmarkedArticle {
     }
 
     @NSManaged public var author: String?
+    @NSManaged public var category: String?
     @NSManaged public var content: String?
     @NSManaged public var descriptionText: String?
     @NSManaged public var imageUrl: String?
@@ -24,6 +25,9 @@ extension BookmarkedArticle {
     @NSManaged public var publishedDate: Date?
     @NSManaged public var sourceName: String?
     @NSManaged public var title: String?
-    @NSManaged public var category: String?
+
+}
+
+extension BookmarkedArticle : Identifiable {
 
 }

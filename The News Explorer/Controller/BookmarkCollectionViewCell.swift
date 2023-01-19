@@ -9,4 +9,7 @@ import UIKit
 
 class BookmarkCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    
 }
