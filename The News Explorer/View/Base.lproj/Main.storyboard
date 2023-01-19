@@ -173,7 +173,7 @@
                     <navigationItem key="navigationItem" prompt="The News Explorer" largeTitleDisplayMode="always" style="editor" id="S5J-hp-m4I">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="right" minimumFontSize="17" id="z1a-rH-Bf5">
-                            <rect key="frame" x="26" y="39" width="235" height="34"/>
+                            <rect key="frame" x="26" y="42" width="235" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -216,20 +216,14 @@
                                 <color key="textColor" red="0.40200836490000003" green="0.40200836490000003" blue="0.40200836490000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 13, 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-4e-zXV">
-                                <rect key="frame" x="20" y="314.5" width="280" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nam-ko-PP9">
-                                <rect key="frame" x="20" y="369" width="280" height="61.5"/>
+                                <rect key="frame" x="20" y="371.5" width="280" height="61.5"/>
                                 <string key="text">News Headlines: Hindustan Times provides exclusive top stories of the day, today headlines from politics, business, technology, photos, video</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSz-Il-Nnz">
-                                <rect key="frame" x="139.5" y="440.5" width="160.5" height="34.5"/>
+                                <rect key="frame" x="139.5" y="443" width="160.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="..continue reading"/>
                                 <connections>
@@ -282,20 +276,37 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ohd-Za-LWZ">
+                                <rect key="frame" x="20" y="312.5" width="280" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 13, 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-4e-zXV">
+                                        <rect key="frame" x="0.0" y="8.5" width="83" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMP-0F-HFm">
+                                        <rect key="frame" x="233.5" y="0.0" width="46.5" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="bookmarkButtonTapped:" destination="rwX-dA-16r" eventType="touchUpInside" id="5tN-BM-TA0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NoP-N5-eoG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nam-ko-PP9" firstAttribute="top" secondItem="Jki-4e-zXV" secondAttribute="bottom" constant="40" id="0WD-RG-na9"/>
                             <constraint firstItem="HPG-Wm-7us" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="4d3-Cg-E79"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="trailing" secondItem="NoP-N5-eoG" secondAttribute="trailing" id="6pb-65-inb"/>
                             <constraint firstItem="3P5-7G-eDh" firstAttribute="top" secondItem="TMa-Se-j0x" secondAttribute="bottom" constant="10" id="Dak-Kq-67N"/>
-                            <constraint firstItem="Jki-4e-zXV" firstAttribute="top" secondItem="3P5-7G-eDh" secondAttribute="bottom" constant="10" id="SYo-NC-V6X"/>
+                            <constraint firstItem="Ohd-Za-LWZ" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="TjK-RV-u9p"/>
                             <constraint firstItem="nam-ko-PP9" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="VaG-3y-uoL"/>
-                            <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="Jki-4e-zXV" secondAttribute="trailing" constant="20" id="VdE-qH-dyj"/>
-                            <constraint firstItem="Jki-4e-zXV" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="Vn8-fh-ctv"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="top" secondItem="NoP-N5-eoG" secondAttribute="top" id="ZaK-jM-vFq"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="height" secondItem="lBv-4h-aRL" secondAttribute="height" multiplier="0.25" id="b12-0I-Ehz"/>
+                            <constraint firstItem="nam-ko-PP9" firstAttribute="top" secondItem="Ohd-Za-LWZ" secondAttribute="bottom" constant="25" id="dYp-Sl-lF4"/>
                             <constraint firstItem="NoP-N5-eoG" firstAttribute="bottom" secondItem="HPG-Wm-7us" secondAttribute="bottom" constant="50" id="fXv-nD-Pum"/>
                             <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="xSz-Il-Nnz" secondAttribute="trailing" constant="20" id="iUi-nG-Di7"/>
                             <constraint firstItem="3P5-7G-eDh" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" constant="20" id="kKu-na-yRz"/>
@@ -304,11 +315,14 @@
                             <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="3P5-7G-eDh" secondAttribute="trailing" constant="20" id="qnb-HU-u7G"/>
                             <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="nam-ko-PP9" secondAttribute="trailing" constant="20" id="tCS-n0-2bT"/>
                             <constraint firstItem="TMa-Se-j0x" firstAttribute="leading" secondItem="NoP-N5-eoG" secondAttribute="leading" id="tZt-lN-eHK"/>
+                            <constraint firstItem="Ohd-Za-LWZ" firstAttribute="top" secondItem="3P5-7G-eDh" secondAttribute="bottom" constant="8" id="wEW-0C-r0d"/>
+                            <constraint firstItem="NoP-N5-eoG" firstAttribute="trailing" secondItem="Ohd-Za-LWZ" secondAttribute="trailing" constant="20" id="zmV-hw-ku5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="The News Explorer" id="r88-tG-5hg"/>
                     <connections>
                         <outlet property="author" destination="S3b-Ub-OxU" id="R63-pa-pWq"/>
+                        <outlet property="bookmarkButtonOutlet" destination="tMP-0F-HFm" id="7RO-ZM-7LY"/>
                         <outlet property="categoryName" destination="yLh-pT-MX6" id="kFv-sQ-EqL"/>
                         <outlet property="content" destination="nam-ko-PP9" id="3kF-FT-fox"/>
                         <outlet property="detailsVCTitle" destination="3P5-7G-eDh" id="7Vu-gf-UYm"/>
@@ -318,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3C-0z-xHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3669.5999999999999" y="-50.246305418719217"/>
+            <point key="canvasLocation" x="3669.375" y="-50.70422535211268"/>
         </scene>
         <!--Web Kit View Controller-->
         <scene sceneID="TQy-N1-evj">
@@ -537,7 +551,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OHF-Rm-VC0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -564,7 +578,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jk0-fb-uRt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

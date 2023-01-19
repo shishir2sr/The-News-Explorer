@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsVC: UIViewController {
 
@@ -16,7 +17,10 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var categoryName: UILabel!
     
+    @IBOutlet weak var bookmarkButtonOutlet: UIButton!
+    
     var currentArticle: AnyObject!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,12 @@ class DetailsVC: UIViewController {
                    content.text = article.content
                    author.text = article.author
                    categoryName.text = article.category?.categoryName
+                    
+            if isIsBookmarked(article: article){
+                bookmarkButtonOutlet.imageView?.image = UIImage(systemName: "bookmark.fill")
+            }else{
+                bookmarkButtonOutlet.imageView?.image = UIImage(systemName: "bookmark")
+            }
             
                }else if currentArticle is BookmarkedArticle {
                    let article = currentArticle as! BookmarkedArticle
@@ -40,8 +50,50 @@ class DetailsVC: UIViewController {
                    content.text = article.content
                    author.text = article.author
                    categoryName.text = article.category
+                   
+                   bookmarkButtonOutlet.isUserInteractionEnabled = false
+                   bookmarkButtonOutlet.alpha = 0
+                   
                }
         
+    }
+    
+    func isIsBookmarked(article: CDArticle)-> Bool{
+        let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BookmarkedArticle")
+        fetchRequest.predicate = NSPredicate(format: "newsUrl == %@ AND sourceName == %@", article.newsUrl!, article.seourceName!)
+        
+        do{
+            let result = try context.fetch(fetchRequest)
+            if result.count > 0{
+                return true
+                
+            }else{
+               return false
+            }
+            
+        }catch{
+            return false
+        }
+    }
+    
+    @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
+        if currentArticle is CDArticle{
+            if isIsBookmarked(article: currentArticle as! CDArticle){
+                
+            }else{
+                CoreDataManager.addBookmark(article: (currentArticle as! CDArticle)){result in
+                    switch result{
+                    case .success(_):
+                        print("Bookmarked")
+                    case .failure(_):
+                        print("failed to bookmark")
+                    }
+                    
+                }
+            }
+        }
+            
     }
     
     
