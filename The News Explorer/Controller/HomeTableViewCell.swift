@@ -25,10 +25,7 @@ class HomeTableViewCell: UITableViewCell {
 
     }
     
-    @IBAction func starButtonTapped(_ sender: UIButton) {
-        print("Star button")
-        sender.setImage(UIImage(named: "star-filled"), for: .normal)
-    }
+    
     
     func setArticleWith(article: CDArticle){
         self.newsTitle.text = article.title
