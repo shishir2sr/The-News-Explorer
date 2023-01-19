@@ -22,7 +22,7 @@ enum CustomError: Error {
         case .invalidData: return "Invalid Data"
         case .unableToComplete: return "Unable to complete your request"
         case .invalidResponse: return "Invalid api Response"
-        case .bookmarkExist: return "Item bookmarked previously"
+        case .bookmarkExist: return "Bokmark already exist!"
         case .bookmarkFailed: return "Item can't be added to the bookmark"
         }
     }

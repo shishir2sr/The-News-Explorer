@@ -158,7 +158,6 @@ class ViewController: UIViewController {
     
     // MARK: Create pull to refresh
     func coreDataPullReq(completion: @escaping  (_ art:[Article],_ categoryName:String)->Void) {
-      
     }
     
     
