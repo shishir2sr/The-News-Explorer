@@ -137,6 +137,15 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                let article = fetchedhResultController.object(at: indexPath) as! BookmarkedArticle
+                CoreDataStack.sharedInstance.persistentContainer.viewContext.delete(article)
+                CoreDataStack.sharedInstance.saveContext()
+                refreshCoreData()
+            }
+        }
+    
 }
 
 
