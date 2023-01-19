@@ -160,7 +160,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
             endingLineNumber = "137"
-            landmarkName = "searchButtonTapped(_:)"
+            landmarkName = "populateTableViewIfNoData()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -208,8 +208,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
             endingLineNumber = "140"
-            landmarkName = "ViewController"
-            landmarkType = "3">
+            landmarkName = "populateTableViewIfNoData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
