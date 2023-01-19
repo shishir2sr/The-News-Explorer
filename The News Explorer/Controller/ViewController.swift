@@ -119,7 +119,9 @@ class ViewController: UIViewController {
             try self.fetchedhResultController.performFetch()
         } catch {
             print("Error fetching data: \(error)")
+            
             showAlertWith(title: "Coredata Error!", message: error.localizedDescription)
+  
         }
         self.tableView.reloadData()
     }
@@ -141,9 +143,11 @@ class ViewController: UIViewController {
                             completion()
                             
                         case .failure(let error):
-                            self.showAlertWith(title: "Erro!", message: error.localizedDescription)
+                            DispatchQueue.main.async {
+                                self.showAlertWith(title: "Erro!", message: error.localizedDescription)
+                            }
+                            
                         }
-                        
                     }
                 }
                 

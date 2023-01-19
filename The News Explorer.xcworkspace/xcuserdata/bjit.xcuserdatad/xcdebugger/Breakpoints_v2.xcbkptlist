@@ -66,6 +66,68 @@
             endingLineNumber = "77"
             landmarkName = "createArticleEntityFrom(articles:categoryName:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A49CD1A5-66B6-430B-96CF-0486CF205437 - b4ea5f8a740be4ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static The_News_Explorer.CoreDataManager.addBookmark(article: The_News_Explorer.CDArticle, completion: (Swift.Result&lt;Swift.String, The_News_Explorer.CustomError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "6076">
+               </Location>
+               <Location
+                  uuid = "A49CD1A5-66B6-430B-96CF-0486CF205437 - b4ea5f8a740be4ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static The_News_Explorer.CoreDataManager.addBookmark(article: The_News_Explorer.CDArticle, completion: (Swift.Result&lt;Swift.String, The_News_Explorer.CustomError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "The News Explorer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bjit/Documents/SHaring%20test/Course%20contents/Mid%20Term/Final%20Project/The%20News%20Explorer/The%20News%20Explorer/Utilities/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "6468">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            uuid = "28EFA6FA-930E-4E98-8DB9-9B45E96D81C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "C0D06C2C-6757-4ED0-8B27-D09244DEB3D7"
+            shouldBeEnabled = "Yes"
+            nameForDebugger = "objc"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "0"
+            stopOnStyle = "0">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
