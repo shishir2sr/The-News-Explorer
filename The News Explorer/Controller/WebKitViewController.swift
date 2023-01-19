@@ -9,7 +9,9 @@ import UIKit
 import WebKit
 
 class WebKitViewController: UIViewController {
+    
     var newsUrl: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let webView = WKWebView(frame: view.bounds)
