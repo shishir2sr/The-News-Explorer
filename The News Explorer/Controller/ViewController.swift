@@ -243,12 +243,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             let article = fetchedhResultController.object(at: indexPath) as! CDArticle
             cell.newsTitle.text = article.title
             cell.newsSource.text = article.seourceName
-            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .omitted, time: .shortened)
+            cell.newsPublishedData.text = article.publishedDate?.formatted(date: .abbreviated, time: .shortened)
             cell.newsImage.sd_setImage(with: URL(string: article.imageUrl ?? "" ), placeholderImage: UIImage(named: "placeholder"))
             cell.newsImage.layer.cornerRadius = 8
-            
-            
-
             return cell
         }
         return cell
